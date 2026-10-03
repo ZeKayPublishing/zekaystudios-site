@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>For Our King | ZeKay Studios</title>
+<meta name="description" content="A medieval Tower Defense x Autobattler Roguelite. Defend your Keep across escalating waves, recruit units, cast spells, and break the game with over 300 upgrades.">
+<meta property="og:title" content="For Our King">
+<meta property="og:description" content="Defend your Keep across escalating waves. Over 300 upgrades. Stack flat and mult modifiers until you break the game beyond its limits.">
+<meta property="og:image" content="https://zekaystudios.com/assets/Store_Main_Capsule.png">
+<meta property="og:url" content="https://zekaystudios.com/games/for-our-king/">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#08192E">
+<link rel="icon" href="../../assets/Shortcut.png">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Grenze+Gotisch:wght@500;600;700;800&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/site.css">
+<style>
+/* For Our King only: the Decree Bar */
+/* ---------- decree bar ---------- */
+.forge{margin-top:44px;border-radius:8px;padding:2px;
+  background:linear-gradient(140deg,var(--gold-2),#4A360C 40%,var(--gold-3) 70%,var(--gold-2));
+  box-shadow:0 30px 70px rgba(3,12,26,.6)}
+.forge-in{border-radius:6px;padding:30px 28px 24px;position:relative;overflow:hidden;
+  background:radial-gradient(120% 90% at 50% 0%,#123152,#081A31 62%,#050F1E)}
+.forge-top{display:flex;justify-content:space-between;gap:26px;flex-wrap:wrap;align-items:flex-end;margin-bottom:24px}
+.forge-top p{margin:0;font-size:15px;color:var(--dim);max-width:38ch}
+.readout{text-align:right;font-family:var(--mono);white-space:nowrap;flex:0 0 auto}
+.readout .l{display:block;font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--dim)}
+.readout .v{display:block;font-size:clamp(40px,8vw,68px);font-weight:600;line-height:1;color:var(--gold);
+  text-shadow:0 0 40px rgba(240,206,94,.4);
+  transition:transform .22s cubic-bezier(.16,2.1,.32,1),color .35s,text-shadow .35s}
+.readout .v.hit{transform:scale(1.10)}
+.readout .v.t2.hit{transform:scale(1.18)}
+.readout .v.t3.hit{transform:scale(1.30)}
+.readout .v.t4.hit{transform:scale(1.44)}
+.readout .v.t3{color:#FF9E3D;text-shadow:0 0 52px rgba(255,158,61,.55)}
+.readout .v.t4{color:var(--red);text-shadow:0 0 26px rgba(212,67,60,.9),0 0 70px rgba(212,67,60,.5)}
+.readout .m b.t3{color:#FF9E3D}
+.readout .m b.t4{color:var(--red)}
+.forge-in.quake{animation:quake .34s cubic-bezier(.36,.07,.19,.97)}
+@keyframes quake{
+  10%{transform:translate(-3px,1px)}30%{transform:translate(4px,-2px)}
+  50%{transform:translate(-4px,2px)}70%{transform:translate(3px,-1px)}
+  90%{transform:translate(-2px,1px)}100%{transform:none}
+}
+.readout .m{font-size:13px;color:var(--dim)}
+.readout .m b{color:var(--red);font-weight:700}
+
+.slots{display:grid;grid-template-columns:repeat(6,1fr);gap:9px}
+.slot{position:relative;min-height:84px;border-radius:5px;
+  border:1px dashed rgba(240,206,94,.26);background:rgba(255,255,255,.028);
+  display:flex;align-items:center;justify-content:center;
+  transition:border-color .18s,background .18s,box-shadow .18s,transform .18s var(--ease)}
+.slot .idx{position:absolute;top:5px;left:7px;font-family:var(--mono);font-size:10px;color:rgba(143,169,194,.45)}
+.slot.hot{border-color:var(--gold);background:rgba(240,206,94,.12);box-shadow:0 0 22px rgba(240,206,94,.28);transform:scale(1.04)}
+.slot.filled{border-style:solid;border-color:transparent;background:none}
+
+.card{width:100%;height:100%;min-height:84px;border-radius:5px;padding:11px 10px;
+  display:flex;flex-direction:column;justify-content:center;gap:5px;
+  cursor:grab;user-select:none;touch-action:none;position:relative;overflow:hidden;
+  border:1px solid rgba(240,206,94,.3);
+  background:linear-gradient(180deg,rgba(20,52,88,.95),rgba(9,26,48,.95));
+  transition:transform .18s var(--ease),box-shadow .18s,border-color .18s,opacity .18s}
+.card:hover{transform:translateY(-3px);box-shadow:0 12px 26px rgba(3,12,26,.55)}
+.card:active{cursor:grabbing}
+.card .nm{font-size:12.5px;font-weight:700;line-height:1.2;color:var(--text)}
+.card .op{font-family:var(--mono);font-size:16px;font-weight:600}
+.card.flat{border-color:rgba(90,182,245,.45)}
+.card.flat .op{color:var(--azure)}
+.card.mult .op{color:var(--gold)}
+.card.amp{border-color:rgba(181,123,232,.5)}
+.card.amp .op{color:var(--violet)}
+.card.amp .nm::after{content:" \00b7 boosts neighbours";font-weight:400;color:var(--violet);opacity:.8;font-size:10px}
+.card.base{border-color:var(--gold);
+  background:linear-gradient(180deg,rgba(240,206,94,.30),rgba(140,100,20,.28));
+  box-shadow:inset 0 0 24px rgba(240,206,94,.22)}
+.card.base .op{color:#FFF0B8}
+.card.ghost{position:fixed;z-index:200;pointer-events:none;opacity:.96;
+  min-height:0;transform-origin:center;transform:rotate(-2deg) scale(1.04);
+  box-shadow:0 24px 50px rgba(0,0,0,.6);cursor:grabbing}
+.card.taken{opacity:.2;pointer-events:none;filter:grayscale(.65)}
+
+.tray-head{display:flex;justify-content:space-between;align-items:baseline;gap:14px;flex-wrap:wrap;margin:24px 0 10px}
+.tray-head span{font-family:var(--mono);font-size:11px;letter-spacing:.2em;text-transform:uppercase;color:var(--dim)}
+.tray{display:grid;grid-template-columns:repeat(5,1fr);gap:9px}
+.tray .card{min-height:76px}
+
+.forge-foot{margin-top:20px;padding-top:16px;border-top:1px solid var(--line);
+  display:flex;justify-content:space-between;align-items:center;gap:16px;flex-wrap:wrap}
+.forge-foot code{font-family:var(--mono);font-size:12.5px;color:var(--dim);line-height:1.6}
+.raze{background:none;border:1px solid transparent;color:var(--dim);font-family:var(--body);
+  font-weight:700;font-size:14px;cursor:pointer;padding:6px 12px;border-radius:3px;
+  transition:color .2s,border-color .2s}
+.raze:hover{color:var(--red);border-color:rgba(212,67,60,.5)}
+.key{display:flex;gap:20px;flex-wrap:wrap;margin-top:14px;font-family:var(--mono);font-size:11px;color:var(--dim)}
+.key i{font-style:normal;display:inline-block;width:9px;height:9px;border-radius:2px;margin-right:6px;vertical-align:middle}
+.spark{position:absolute;width:5px;height:5px;border-radius:50%;background:var(--gold);pointer-events:none}
+@media (max-width:900px){
+  .slots{grid-template-columns:repeat(3,1fr)}
+  .tray{grid-template-columns:repeat(3,1fr)}
+}
+@media (max-width:640px){
+  .forge-in{padding:22px 16px}
+  .forge-top{flex-direction:column;align-items:flex-start}
+  .readout{text-align:left}
+  .slots,.tray{grid-template-columns:repeat(2,1fr)}
+}
+
+</style>
+</head>
+<body>
+
+<div id="veil"></div>
+<canvas id="sky"></canvas>
+<canvas id="motes"></canvas>
+<div id="grain"></div>
+<div id="bar"></div>
+
+<div class="rail l" id="railL"><div class="stone"></div><div class="vine"></div><div class="fill"></div></div>
+<div class="rail r" id="railR"><div class="stone"></div><div class="vine"></div><div class="fill"></div></div>
+
+<nav class="nav" aria-label="Main">
+  <a class="brand" href="../../">ZeKay <b>Studios</b></a>
+  <div class="nav-links">
+    <details class="menu">
+      <summary>Games</summary>
+      <div class="menu-list">
+        <a href="../../games/for-our-king/" aria-current="page"><img src="../../assets/thumbs/fok.jpg" alt=""><span>For Our King<small>Out October 27</small></span></a>
+        <a href="../../games/apprentice-mage-gale/"><img src="../../assets/thumbs/amg.jpg" alt=""><span>Apprentice Mage Gale<small>Coming to Steam</small></span></a>
+      </div>
+    </details>
+    <a href="#press">Press</a>
+    <a class="wide-only" href="mailto:zain@zekaystudios.com">Contact</a>
+  </div>
+</nav>
+
+<header class="hero">
+  <div class="hero-art" id="art" style="background-image:url('../../assets/Library_Hero.png')"></div>
+  <div class="hero-fade"></div>
+  <div class="hero-in">
+    <img class="logo" id="logo" src="../../assets/Library_Logo.png" alt="For Our King">
+    <p class="tag">Defend the keep against waves of enemies. For OUR King.</p>
+    <div class="cta">
+      <a class="btn pulse" href="https://store.steampowered.com/app/4993890/">Wishlist on Steam</a>
+      <a class="btn ghost" href="#press">Press kit</a>
+    </div>
+  </div>
+  <p class="meta">Tower Defense <i>&times;</i> Autobattler <i>&times;</i> Roguelite <i>&middot;</i> Out <b>October 27</b></p>
+  <div class="scroller"></div>
+</header>
+<div class="crenel"></div>
+
+<section>
+  <div class="wrap">
+    <div class="rise">
+      <p class="eyebrow">The idea</p>
+      <h2>One keep. Everything else is coming for it.</h2>
+      <p class="lead">For Our King is a single player Roguelite Tower Defence and Autobattler built on one idea. Defend the keep against waves of enemies, recruit different unit types, and cast spells from different Schools of Magic.</p>
+    </div>
+    <div class="stats rise d1">
+      <div class="stat"><span class="n" data-to="300" data-suffix="+">0</span><span class="l">Skill tree upgrades</span></div>
+      <div class="stat"><span class="n" data-to="12">0</span><span class="l">Unit subclasses</span></div>
+      <div class="stat"><span class="n" data-to="8">0</span><span class="l">Spell slots</span></div>
+      <div class="stat"><span class="n" data-to="6">0</span><span class="l">Sealed prestige paths</span></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="feature">
+      <div class="copy rise">
+        <p class="eyebrow">Progression</p>
+        <h2>Declare Your Royal Decrees</h2>
+        <p>Earn Gems, Essence, and Crowns to unlock over 300 different nodes to strengthen your Keep, Units, Economy, and cast spells.</p>
+      </div>
+      <div class="media rise d1 tilt">
+        <span class="corner tl"></span><span class="corner tr"></span>
+        <span class="corner bl"></span><span class="corner br"></span>
+        <div class="inner">
+          <video autoplay muted loop playsinline preload="metadata"
+            src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/4993890/extras/b77194272df646efcddd5def703cc28c.webm?t=1787497121"></video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="feature flip">
+      <div class="copy rise">
+        <p class="eyebrow">The Royal Court</p>
+        <h2>Assemble Your Royal Court</h2>
+        <p>Add flat and mult modifiers, create broken synergies, and stack unique effects until you break the game beyond its limits.</p>
+      </div>
+      <div class="media rise d1 tilt">
+        <span class="corner tl"></span><span class="corner tr"></span>
+        <span class="corner bl"></span><span class="corner br"></span>
+        <div class="inner">
+          <video autoplay muted loop playsinline preload="metadata"
+            src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/4993890/extras/4f6ca873f1f68a8565b0a25112beb1e5.webm?t=1787497121"></video>
+        </div>
+      </div>
+    </div>
+
+    <div class="forge rise d2">
+      <div class="forge-in" id="forge">
+        <div class="forge-top">
+          <div>
+            <p class="eyebrow" style="margin-bottom:10px">Build a bar</p>
+            <p>Six slots, ten decrees. Drag them in. They resolve left to right, so the order you choose is the whole thing.</p>
+          </div>
+          <div class="readout">
+            <span class="l">Warrior damage</span>
+            <span class="v" id="val">10</span>
+            <span class="m" id="mult">base</span>
+          </div>
+        </div>
+
+        <div class="slots" id="slots"></div>
+
+        <div class="tray-head">
+          <span>Unsworn decrees</span>
+          <span id="count">5 slots open</span>
+        </div>
+        <div class="tray" id="tray"></div>
+
+        <div class="forge-foot">
+          <code id="line">only the Warhost is sworn</code>
+          <button class="raze" id="raze" type="button">Raze the tree</button>
+        </div>
+        <div class="key">
+          <span><i style="background:var(--azure)"></i>flat, adds</span>
+          <span><i style="background:var(--gold)"></i>mult, multiplies</span>
+          <span><i style="background:var(--violet)"></i>amplifier, buffs the cards either side of it</span>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="feature">
+      <div class="copy rise">
+        <p class="eyebrow">Endgame</p>
+        <h2>Ascend Through Prestige</h2>
+        <p>Some doors never open through honest service. Spend Essence to prestige and raze your entire tree in order to take one of six permanently sealed unlocks in exchange, then climb again but stronger than you were before.</p>
+      </div>
+      <div class="media rise d1 tilt">
+        <span class="corner tl"></span><span class="corner tr"></span>
+        <span class="corner bl"></span><span class="corner br"></span>
+        <div class="inner">
+          <video autoplay muted loop playsinline preload="metadata"
+            src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/4993890/extras/e4278d394e5385367e3e82b243b87b66.webm?t=1787497121"></video>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="crenel"></div>
+
+<section>
+  <div class="wrap">
+    <div class="rise" style="text-align:center">
+      <p class="eyebrow" style="justify-content:center">Trailer</p>
+      <h2 style="margin-bottom:26px">See it move</h2>
+    </div>
+    <div class="media rise d1" style="max-width:920px;margin:0 auto">
+      <span class="corner tl"></span><span class="corner tr"></span>
+      <span class="corner bl"></span><span class="corner br"></span>
+      <div class="inner">
+        <video controls playsinline preload="metadata" poster="../../assets/trailer_poster.jpg" src="../../assets/trailer.mp4"></video>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="wrap">
+    <div class="rise">
+      <p class="eyebrow">Screenshots</p>
+      <h2 style="margin-bottom:8px">Stills</h2>
+      <p class="dim">Full resolution copies live in the press kit.</p>
+    </div>
+    <div class="shots">
+      <figure class="shot rise">
+        <div class="media tilt"><span class="corner tl"></span><span class="corner br"></span>
+          <div class="inner"><img src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/4993890/06fdfa92db4c1d5cab8e50b528b3fdf3738df250/ss_06fdfa92db4c1d5cab8e50b528b3fdf3738df250.1920x1080.jpg?t=1787497121" alt="Gameplay" loading="lazy"></div></div>
+        <figcaption><span>Gameplay &middot; 1920 &times; 1080</span>
+          <a href="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/4993890/06fdfa92db4c1d5cab8e50b528b3fdf3738df250/ss_06fdfa92db4c1d5cab8e50b528b3fdf3738df250.1920x1080.jpg?t=1787497121" target="_blank" rel="noopener">Open full size</a></figcaption>
+      </figure>
+
+      <figure class="shot rise d1">
+        <div class="media tilt"><span class="corner tl"></span><span class="corner br"></span>
+          <div class="inner"><video autoplay muted loop playsinline preload="none"
+            src="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/4993890/extras/2c3eb42103e2d98c47a4d46d7e699e9c.webm?t=1787497121"></video></div></div>
+        <figcaption><span>Combat loop &middot; WEBM</span>
+          <a href="https://shared.fastly.steamstatic.com/store_item_assets/steam/apps/4993890/extras/2c3eb42103e2d98c47a4d46d7e699e9c.webm?t=1787497121" target="_blank" rel="noopener">Open clip</a></figcaption>
+      </figure>
+
+      <figure class="shot rise d2">
+        <div class="media tilt"><span class="corner tl"></span><span class="corner br"></span>
+          <div class="inner"><img src="../../assets/Store_Main_Capsule.png" alt="Key art" loading="lazy"></div></div>
+        <figcaption><span>Key art &middot; 1232 &times; 706</span>
+          <a href="../../assets/Store_Main_Capsule.png" download>Download PNG</a></figcaption>
+      </figure>
+
+      <figure class="shot rise d3">
+        <div class="media tilt"><span class="corner tl"></span><span class="corner br"></span>
+          <div class="inner"><img src="../../assets/Library_Hero.png" alt="The Keep" loading="lazy"></div></div>
+        <figcaption><span>The Keep &middot; 3840 &times; 1240</span>
+          <a href="../../assets/Library_Hero.png" download>Download 4K</a></figcaption>
+      </figure>
+    </div>
+
+    <div class="dl rise d1">
+      <a class="btn ghost" href="../../press/for-our-king-presskit.zip" download>Press kit: art, logo and trailer (ZIP)</a>
+      <a class="btn ghost" href="../../assets/Library_Logo.png" download>Logo, transparent PNG</a>
+      <a class="btn ghost" href="../../assets/trailer.mp4" download>Trailer, MP4</a>
+    </div>
+  </div>
+</section>
+
+<div class="crenel"></div>
+
+<section id="press">
+  <div class="wrap rise">
+    <p class="eyebrow">Press and creators</p>
+    <h2>Request a review key</h2>
+    <p>Keys are available for press, streamers, and content creators. Email me and I will send one over the same day, along with the press kit if you need capsules and screenshots at full resolution. There is no embargo and no approval process, so you are free to publish whenever suits your schedule and to say whatever the game actually deserves.</p>
+    <ul class="facts">
+      <li><span class="k">Title</span><span>For Our King</span></li>
+      <li><span class="k">Developer</span><span>ZeKay Studios</span></li>
+      <li><span class="k">Genre</span><span>Tower Defense, Autobattler, Roguelite</span></li>
+      <li><span class="k">Platform</span><span>PC via Steam</span></li>
+      <li><span class="k">Release</span><span>October 27, 2026</span></li>
+      <li><span class="k">Languages</span><span>English</span></li>
+      <li><span class="k">Contact</span><span><a href="mailto:zain@zekaystudios.com">zain@zekaystudios.com</a></span></li>
+    </ul>
+    <div class="cta" style="justify-content:flex-start">
+      <a class="btn" href="mailto:zain@zekaystudios.com?subject=Review%20key%20request%20-%20For%20Our%20King">Request a key</a>
+      <a class="btn ghost" href="https://store.steampowered.com/app/4993890/">Steam page</a>
+    </div>
+  </div>
+</section>
+
+
+<footer>
+  <p><a href="../../">ZeKay Studios</a> <i>&middot;</i> <a href="../../games/for-our-king/">For Our King</a> <i>&middot;</i> <a href="../../games/apprentice-mage-gale/">Apprentice Mage Gale</a></p>
+  <p>&copy; 2026 ZeKay Studios <i>&middot;</i> <a href="mailto:zain@zekaystudios.com">zain@zekaystudios.com</a></p>
+</footer>
+
+<script src="../../assets/site.js"></script>
+<script>
+/* For Our King only: the Decree Bar */
+(function(){
+"use strict";
+var reduce = matchMedia('(prefers-reduced-motion: reduce)').matches;
+
+/* ================= DECREE BAR ================= */
+var SLOTS = 6, BASEVAL = 10;
+var DEC = {
+  base:    {n:"Warhost",           kind:"base", v:BASEVAL},
+  sharp:   {n:"Sharpened Edge",    kind:"flat", v:8},
+  brist:   {n:"Bristling Defense", kind:"flat", v:15},
+  ledger:  {n:"Ledger Departments",kind:"flat", v:6},
+  upkeep:  {n:"Weapon Maintenance",kind:"flat", v:25},
+  fletch:  {n:"Fletching Craft",   kind:"flat", v:12},
+  iron:    {n:"Iron Doctrine",     kind:"mult", v:2.4},
+  twin:    {n:"Twin Barrage",      kind:"mult", v:3.1},
+  arcane:  {n:"Arcane Overcharge", kind:"mult", v:2.8},
+  royal:   {n:"Royal Endorsement", kind:"amp",  v:1.6},
+  overflow:{n:"Overflow Reserves", kind:"amp",  v:2.0}
+};
+var POOL = ['sharp','brist','ledger','upkeep','fletch','iron','twin','arcane','royal','overflow'];
+var slots = [null,null,'base',null,null,null];
+
+var slotHost = document.getElementById('slots'),
+    trayHost = document.getElementById('tray'),
+    valEl = document.getElementById('val'),
+    mulEl = document.getElementById('mult'),
+    lineEl = document.getElementById('line'),
+    cntEl = document.getElementById('count'),
+    forge = document.getElementById('forge');
+
+function opLabel(d){
+  if (d.kind === 'base') return String(BASEVAL);
+  if (d.kind === 'flat') return '+' + d.v;
+  return '\u00D7' + d.v;
+}
+function cardEl(id){
+  var d = DEC[id];
+  var el = document.createElement('div');
+  el.className = 'card ' + d.kind;
+  el.dataset.id = id;
+  el.innerHTML = '<div class="nm">' + d.n + '</div><div class="op">' + opLabel(d) + '</div>';
+  return el;
+}
+
+function compute(){
+  var i, j, eff = {};
+  for (i=0;i<SLOTS;i++){ var id = slots[i]; if (id && id !== 'base') eff[i] = DEC[id].v; }
+  /* amplifiers boost the card immediately either side */
+  for (i=0;i<SLOTS;i++){
+    var aid = slots[i];
+    if (!aid || aid === 'base' || DEC[aid].kind !== 'amp') continue;
+    [i-1, i+1].forEach(function(j){
+      if (j < 0 || j >= SLOTS) return;
+      var tid = slots[j];
+      if (!tid || tid === 'base' || DEC[tid].kind === 'amp') return;
+      eff[j] = eff[j] * DEC[aid].v;
+    });
+  }
+  var total = BASEVAL, parts = [];
+  for (i=0;i<SLOTS;i++){
+    var cid = slots[i];
+    if (!cid || cid === 'base') continue;
+    var d = DEC[cid];
+    if (d.kind === 'amp') continue;
+    var v = Math.round(eff[i]*100)/100;
+    if (d.kind === 'flat'){ total += v; parts.push('+' + v); }
+    else { total *= v; parts.push('\u00D7' + v); }
+  }
+  return {total: total, parts: parts};
+}
+
+var shown = BASEVAL, raf = 0, lastTotal = BASEVAL;
+function fmt(n){
+  return n >= 1000 ? Math.round(n).toLocaleString('en-US')
+                   : (Math.round(n*10)/10).toLocaleString('en-US');
+}
+function tierFor(x){
+  if (x >= 200) return 4;
+  if (x >= 50)  return 3;
+  if (x >= 10)  return 2;
+  return 1;
+}
+function countTo(target){
+  var x = target / BASEVAL, t = tierFor(x);
+  valEl.classList.remove('t2','t3','t4');
+  if (t > 1) valEl.classList.add('t' + t);
+  if (reduce){ shown = target; valEl.textContent = fmt(target); return; }
+  cancelAnimationFrame(raf);
+  var from = shown, t0 = performance.now(), dur = 380 + t * 90;
+  (function step(now){
+    var p = Math.min((now-t0)/dur,1), k = 1-Math.pow(1-p,4);
+    shown = from + (target-from)*k;
+    valEl.textContent = fmt(shown);
+    if (p<1) raf = requestAnimationFrame(step);
+    else { shown = target; valEl.textContent = fmt(target); }
+  })(performance.now());
+  valEl.classList.add('hit');
+  setTimeout(function(){ valEl.classList.remove('hit'); }, 190 + t * 40);
+  if (t === 4 && target > lastTotal){
+    var panel = document.querySelector('.forge-in');
+    panel.classList.remove('quake');
+    void panel.offsetWidth;
+    panel.classList.add('quake');
+  }
+  lastTotal = target;
+}
+
+function render(){
+  var r = compute();
+  slotHost.innerHTML = '';
+  for (var i=0;i<SLOTS;i++){
+    var s = document.createElement('div');
+    s.className = 'slot'; s.dataset.slot = i;
+    s.innerHTML = '<span class="idx">' + (i+1) + '</span>';
+    if (slots[i]){ s.classList.add('filled'); s.appendChild(cardEl(slots[i])); }
+    slotHost.appendChild(s);
+  }
+  trayHost.innerHTML = '';
+  POOL.forEach(function(id){
+    var c = cardEl(id);
+    if (slots.indexOf(id) !== -1) c.classList.add('taken');
+    trayHost.appendChild(c);
+  });
+  var open = slots.filter(function(x){ return x === null; }).length;
+  cntEl.textContent = open + (open === 1 ? ' slot open' : ' slots open');
+
+  countTo(r.total);
+  var x = Math.round((r.total/BASEVAL)*10)/10;
+  var tv = tierFor(x);
+  mulEl.innerHTML = r.parts.length
+    ? '<b class="' + (tv > 2 ? 't' + tv : '') + '">' + x + '\u00D7</b> base'
+    : 'base';
+  lineEl.textContent = r.parts.length
+    ? BASEVAL + ' ' + r.parts.join(' ') + '  \u2192  ' + fmt(r.total)
+    : 'only the Warhost is sworn';
+}
+
+var drag = null;
+function firstFree(){ for (var i=0;i<SLOTS;i++) if (slots[i] === null) return i; return -1; }
+function place(id, target){
+  var from = slots.indexOf(id);
+  if (target === null){ if (from !== -1 && id !== 'base') slots[from] = null; return; }
+  var occupant = slots[target];
+  if (occupant === 'base' && from === -1) return;
+  if (from !== -1){ slots[from] = occupant; slots[target] = id; }
+  else { slots[target] = id; }
+}
+function onDown(e){
+  var card = e.target.closest('.card');
+  if (!card || card.classList.contains('taken')) return;
+  e.preventDefault();
+  var r = card.getBoundingClientRect();
+  var ghost = card.cloneNode(true);
+  ghost.classList.add('ghost');
+  ghost.style.left = r.left + 'px';
+  ghost.style.top = r.top + 'px';
+  ghost.style.width = r.width + 'px';
+  ghost.style.height = r.height + 'px';
+  document.body.appendChild(ghost);
+  card.style.opacity = '.25';
+  drag = {id: card.dataset.id, ghost: ghost, ox: e.clientX-r.left, oy: e.clientY-r.top, src: card, moved: false};
+  window.addEventListener('pointermove', onMove);
+  window.addEventListener('pointerup', onUp);
+}
+function onMove(e){
+  if (!drag) return;
+  drag.moved = true;
+  drag.ghost.style.left = (e.clientX-drag.ox) + 'px';
+  drag.ghost.style.top  = (e.clientY-drag.oy) + 'px';
+  document.querySelectorAll('.slot').forEach(function(s){ s.classList.remove('hot'); });
+  var u = document.elementFromPoint(e.clientX, e.clientY);
+  var slot = u && u.closest ? u.closest('.slot') : null;
+  if (slot) slot.classList.add('hot');
+}
+function onUp(e){
+  if (!drag) return;
+  window.removeEventListener('pointermove', onMove);
+  window.removeEventListener('pointerup', onUp);
+  drag.ghost.remove();
+  drag.src.style.opacity = '';
+  document.querySelectorAll('.slot').forEach(function(s){ s.classList.remove('hot'); });
+  var id = drag.id, moved = drag.moved;
+  var u = document.elementFromPoint(e.clientX, e.clientY);
+  var slot = u && u.closest ? u.closest('.slot') : null;
+  if (!moved){
+    /* treat as a tap */
+    if (id !== 'base'){
+      var at = slots.indexOf(id);
+      if (at !== -1) slots[at] = null;
+      else { var f = firstFree(); if (f !== -1){ slots[f] = id; burst(e.clientX, e.clientY); } }
+    }
+  } else if (slot){
+    place(id, +slot.dataset.slot);
+    burst(e.clientX, e.clientY);
+  } else if (id !== 'base' && slots.indexOf(id) !== -1){
+    place(id, null);
+  }
+  drag = null;
+  render();
+}
+document.addEventListener('pointerdown', function(e){
+  if (e.target.closest('#slots') || e.target.closest('#tray')) onDown(e);
+});
+
+function burst(px, py){
+  if (reduce) return;
+  var r = forge.getBoundingClientRect();
+  for (var i=0;i<12;i++){
+    (function(){
+      var s = document.createElement('span');
+      s.className = 'spark';
+      s.style.left = (px-r.left)+'px'; s.style.top = (py-r.top)+'px';
+      forge.appendChild(s);
+      var a = Math.random()*6.284, dist = 28 + Math.random()*54;
+      var an = s.animate([
+        {transform:'translate(0,0) scale(1)', opacity:1},
+        {transform:'translate('+Math.cos(a)*dist+'px,'+Math.sin(a)*dist+'px) scale(0)', opacity:0}
+      ], {duration: 540+Math.random()*300, easing:'cubic-bezier(.2,.8,.3,1)'});
+      an.onfinish = function(){ s.remove(); };
+    })();
+  }
+}
+
+document.getElementById('raze').addEventListener('click', function(){
+  slots = [null,null,'base',null,null,null];
+  render();
+});
+render();
+})();
+</script>
+</body>
+</html>

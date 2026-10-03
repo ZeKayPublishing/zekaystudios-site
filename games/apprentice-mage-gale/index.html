@@ -1,0 +1,420 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Apprentice Mage Gale | ZeKay Studios</title>
+<meta name="description" content="Apprentice Mage Gale, an auto-battler RPG from ZeKay Studios.">
+<meta property="og:title" content="Apprentice Mage Gale">
+<meta property="og:description" content="An auto-battler RPG from ZeKay Studios.">
+<meta property="og:image" content="https://zekaystudios.com/assets/amg/capsule_main.png">
+<meta property="og:url" content="https://zekaystudios.com/games/apprentice-mage-gale/">
+<meta property="og:type" content="website">
+<meta name="theme-color" content="#0A0B2E">
+<link rel="icon" href="../../assets/amg/icon.jpg">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Grenze+Gotisch:wght@700&family=Pixelify+Sans:wght@400;500;600;700&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="../../assets/site.css">
+<style>
+/* =====================================================================
+   Apprentice Mage Gale only. Everything here restyles the shared site
+   to match the game's art: night indigo, violet, sky blue, gold stars.
+   ===================================================================== */
+:root{
+  --abyss:#0A0B2E;
+  --gold:#FFD34D; --gold-2:#E5A823; --gold-3:#8C5A0E;
+  --violet:#9B7BFF; --violet-2:#6B45F0; --violet-3:#3E2399;
+  --azure:#2FB2FF; --sky:#01AEFD;
+  --text:#F2F3FF; --dim:#A3ABD9;
+  --line:rgba(155,123,255,.22);
+  --disp:"Pixelify Sans","Nunito Sans",system-ui,sans-serif;
+}
+
+/* backdrop: violet and sky glows, drifting doodles down the sides */
+#veil::before{background:radial-gradient(circle,rgba(47,178,255,.20),transparent 68%)}
+#veil::after{background:radial-gradient(circle,rgba(155,123,255,.22),transparent 68%)}
+body[data-sky="doodles"] #sky{
+  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='420' viewBox='0 0 420 420'%3E%3Cg fill='none' stroke='white' stroke-opacity='0.13' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M40 70q25-10 50 0v44q-25-10-50 0z M90 70q25-10 50 0v44q-25-10-50 0z M48 84q17-6 34 0 M48 96q17-6 34 0 M98 84q17-6 34 0 M98 96q17-6 34 0 M290 40h16 M294 40v18 M302 40v18 M277 88q21 10 42 0 M196 300q45 16 90 0 M212 296l30-72 22 70 M220 280q22 7 44 0 M242 224q-14 2-20 10 M58 364l58-58 M350 316l12 14-12 14-12-14z M124 284Q124 298 138 298Q124 298 124 312Q124 298 110 298Q124 298 124 284Z'/%3E%3Ccircle cx='298' cy='80' r='22'/%3E%3Ccircle cx='350' cy='330' r='28'/%3E%3Ccircle cx='350' cy='330' r='20'/%3E%3C/g%3E%3Cpath fill='white' fill-opacity='0.16' d='M185 151Q185 160 194 160Q185 160 185 169Q185 160 176 160Q185 160 185 151Z M385 173Q385 180 392 180Q385 180 385 187Q385 180 378 180Q385 180 385 173Z M35 209Q35 215 41 215Q35 215 35 221Q35 215 29 215Q35 215 35 209Z M250 387Q250 395 258 395Q250 395 250 403Q250 395 242 395Q250 395 250 387Z M160 15Q160 20 165 20Q160 20 160 25Q160 20 155 20Q160 20 160 15Z'/%3E%3C/svg%3E");background-size:420px 420px;
+  animation:doodle 120s linear infinite}
+@keyframes doodle{to{background-position:420px -420px}}
+#motes{opacity:.85}
+#bar{background:linear-gradient(90deg,var(--violet-2),var(--gold),#FFF6CC);box-shadow:0 0 14px rgba(255,211,77,.6)}
+
+/* side rails in violet with gold stars */
+.rail .stone{background:
+    repeating-linear-gradient(0deg,rgba(155,123,255,.13) 0 2px,transparent 2px 46px),
+    linear-gradient(180deg,rgba(34,26,100,.5),rgba(14,12,50,.2));
+  border-color:rgba(155,123,255,.18)}
+.rail .vine{background:linear-gradient(180deg,transparent,rgba(155,123,255,.32) 8%,rgba(155,123,255,.32) 92%,transparent)}
+.rail .fill{background:linear-gradient(180deg,var(--violet-2),var(--gold));box-shadow:0 0 12px rgba(255,211,77,.5)}
+.node{border-color:rgba(155,123,255,.45)}
+.node::after{border-color:rgba(155,123,255,.25)}
+.node.lit{background:var(--gold);border-color:var(--gold);box-shadow:0 0 18px rgba(255,211,77,.75)}
+
+/* type */
+h2{font-weight:600;font-size:clamp(32px,4.8vw,52px);letter-spacing:.01em;
+  text-shadow:0 4px 0 rgba(62,35,153,.75)}
+.eyebrow::before{width:11px;height:11px;background:var(--gold);
+  clip-path:polygon(50% 0,62% 38%,100% 50%,62% 62%,50% 100%,38% 62%,0 50%,38% 38%)}
+.todo{color:var(--dim);font-style:italic;opacity:.8}
+
+/* buttons: violet like the GALE letters */
+.btn{font-weight:600;font-size:20px;color:#fff;border-color:var(--violet-3);
+  background:linear-gradient(180deg,#BBA3FF,#8C64FF 46%,#6A3FF2);
+  text-shadow:0 2px 0 rgba(40,16,110,.55);
+  box-shadow:0 5px 0 var(--violet-3),0 12px 30px rgba(6,6,30,.55)}
+.btn:hover{box-shadow:0 8px 0 var(--violet-3),0 18px 38px rgba(6,6,30,.6)}
+.btn:active{box-shadow:0 2px 0 var(--violet-3)}
+.btn.ghost{background:rgba(20,18,64,.66);color:#E9E2FF;border-color:rgba(155,123,255,.6);text-shadow:none;
+  box-shadow:0 5px 0 rgba(8,8,34,.6),0 10px 26px rgba(6,6,30,.4)}
+.btn.ghost:hover{background:rgba(36,30,100,.85)}
+.pulse{animation:up .9s .52s var(--ease) both,glowv 2.8s 1.6s ease-in-out infinite}
+@keyframes glowv{0%,100%{box-shadow:0 5px 0 var(--violet-3),0 12px 30px rgba(6,6,30,.55)}
+  50%{box-shadow:0 5px 0 var(--violet-3),0 12px 46px rgba(155,123,255,.55)}}
+
+/* frames */
+.media{background:linear-gradient(140deg,var(--violet),var(--azure) 35%,var(--violet-2) 68%,var(--gold))}
+.media .inner{background:#0B0A2A}
+.corner{border-color:var(--gold)}
+.crenel{height:22px;opacity:1;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='88' height='22' viewBox='0 0 88 22'%3E%3Cpath fill='%239B7BFF' fill-opacity='0.55' d='M22 2Q22 11 31 11Q22 11 22 20Q22 11 13 11Q22 11 22 2Z'/%3E%3Cpath fill='%23FFD34D' fill-opacity='0.6' d='M66 6Q66 11 71 11Q66 11 66 16Q66 11 61 11Q66 11 66 6Z'/%3E%3C/svg%3E") center/88px 22px repeat-x}
+
+/* ---------- hero: banner art with the logo overlapping its bottom edge ---------- */
+.hero.amg{display:block;place-items:normal;min-height:0;padding:0 0 84px;text-align:center}
+.banner{position:relative;height:clamp(300px,40vw,56svh);overflow:hidden;
+  -webkit-mask-image:linear-gradient(to bottom,#000 58%,transparent);mask-image:linear-gradient(to bottom,#000 58%,transparent)}
+.banner-art{position:absolute;inset:-5% -2%;background:center 55%/cover no-repeat;
+  transform:scale(1.08);will-change:transform}
+.banner-fade{position:absolute;inset:0;pointer-events:none;
+  background:linear-gradient(to bottom,rgba(10,11,46,.62) 0,transparent 24%)}
+.hero.amg .hero-in{margin:calc(-1 * clamp(80px,9vw,140px)) auto 0;padding:0 20px;max-width:900px}
+.hero.amg .logo{width:min(600px,90vw);margin:0 auto 10px;filter:drop-shadow(0 16px 30px rgba(6,6,30,.7))}
+.hero.amg .tag{font-weight:500;font-size:clamp(20px,2.8vw,28px);max-width:30ch;margin-bottom:30px;
+  text-shadow:0 3px 0 rgba(20,10,70,.9)}
+.tag.is-ph{opacity:.5}
+.hero.amg .meta{margin-top:30px;animation:up .9s .7s var(--ease) both}
+
+/* ---------- the party stage ---------- */
+.center{text-align:center}
+.center .eyebrow{justify-content:center}
+.center p{margin-left:auto;margin-right:auto}
+.stage{margin-top:44px;border-radius:14px;padding:3px;
+  background:linear-gradient(140deg,var(--violet),var(--azure) 40%,var(--violet-2) 70%,var(--gold));
+  box-shadow:0 30px 70px rgba(4,4,24,.6)}
+.stage-in{position:relative;border-radius:11px;overflow:hidden;
+  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='420' viewBox='0 0 420 420'%3E%3Cg fill='none' stroke='white' stroke-opacity='0.35' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M40 70q25-10 50 0v44q-25-10-50 0z M90 70q25-10 50 0v44q-25-10-50 0z M48 84q17-6 34 0 M48 96q17-6 34 0 M98 84q17-6 34 0 M98 96q17-6 34 0 M290 40h16 M294 40v18 M302 40v18 M277 88q21 10 42 0 M196 300q45 16 90 0 M212 296l30-72 22 70 M220 280q22 7 44 0 M242 224q-14 2-20 10 M58 364l58-58 M350 316l12 14-12 14-12-14z M124 284Q124 298 138 298Q124 298 124 312Q124 298 110 298Q124 298 124 284Z'/%3E%3Ccircle cx='298' cy='80' r='22'/%3E%3Ccircle cx='350' cy='330' r='28'/%3E%3Ccircle cx='350' cy='330' r='20'/%3E%3C/g%3E%3Cpath fill='white' fill-opacity='0.55' d='M185 151Q185 160 194 160Q185 160 185 169Q185 160 176 160Q185 160 185 151Z M385 173Q385 180 392 180Q385 180 385 187Q385 180 378 180Q385 180 385 173Z M35 209Q35 215 41 215Q35 215 35 221Q35 215 29 215Q35 215 35 209Z M250 387Q250 395 258 395Q250 395 250 403Q250 395 242 395Q250 395 250 387Z M160 15Q160 20 165 20Q160 20 160 25Q160 20 155 20Q160 20 160 15Z'/%3E%3C/svg%3E") 0 0/300px 300px,radial-gradient(120% 90% at 50% 30%,#2BC0FF,var(--sky) 55%,#0A86D8);
+  height:clamp(250px,32vw,400px);display:flex;align-items:flex-end;justify-content:center;
+  gap:clamp(6px,3.2vw,50px);padding:0 16px clamp(22px,3.4vw,44px);
+  --s:.6}
+.stage-in::after{content:"";position:absolute;inset:0;pointer-events:none;
+  background:radial-gradient(ellipse at 50% 45%,transparent 55%,rgba(0,40,120,.35))}
+.member{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;
+  width:calc(var(--w) * 1px * var(--s));flex:0 0 auto;
+  animation:hop 3.6s ease-in-out infinite;animation-delay:calc(var(--i) * -0.9s);
+  transition:transform .3s var(--ease)}
+.member img{width:100%;height:auto;image-rendering:auto;filter:drop-shadow(0 3px 0 rgba(0,40,110,.28))}
+.member::after{content:"";width:74%;height:clamp(6px,1vw,12px);margin-top:-4px;border-radius:50%;
+  background:rgba(0,48,140,.35)}
+.member:hover{transform:translateY(-8px)}
+@keyframes hop{0%,100%{translate:0 0}50%{translate:0 -7px}}
+.you{position:absolute;top:calc(-1 * clamp(26px,3vw,38px));left:50%;transform:translateX(-50%);white-space:nowrap;
+  font-family:var(--disp);font-weight:600;font-size:clamp(12px,1.4vw,16px);line-height:1;
+  padding:6px 12px 6px 10px;border-radius:99px;color:#3A2305;
+  background:linear-gradient(180deg,#FFE58A,var(--gold));box-shadow:0 3px 0 var(--gold-3),0 8px 18px rgba(0,30,90,.35)}
+.you::before{content:"";display:inline-block;width:10px;height:10px;margin-right:6px;vertical-align:-1px;background:#6A3FF2;
+  clip-path:polygon(50% 0,62% 38%,100% 50%,62% 62%,50% 100%,38% 62%,0 50%,38% 38%)}
+
+.you.alt{color:#fff;font-weight:500;background:rgba(24,20,78,.82);box-shadow:0 3px 0 rgba(8,8,34,.5),0 8px 18px rgba(0,30,90,.3)}
+.you.alt::before{display:none}
+
+/* ---------- feature screenshots crossfade between two shots ---------- */
+.swap img{position:absolute;inset:0}
+.swap img+img{opacity:0;animation:swap 10s ease-in-out infinite;animation-delay:var(--delay,0s)}
+@keyframes swap{0%,42%{opacity:0}50%,92%{opacity:1}100%{opacity:0}}
+
+/* ---------- press assets ---------- */
+.assets{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:18px;margin-top:30px}
+.asset{margin:0;border:1px solid var(--line);border-radius:8px;padding:10px 10px 12px;
+  background:linear-gradient(180deg,rgba(26,22,84,.6),rgba(12,11,44,.5));
+  transition:transform .3s var(--ease),border-color .3s}
+.asset:hover{transform:translateY(-4px);border-color:rgba(155,123,255,.55)}
+.asset.wide{grid-column:1/-1}
+.asset .thumb{height:170px;border-radius:5px;display:grid;place-items:center;overflow:hidden;
+  background:#0B0A2A}
+.asset.wide .thumb{height:auto;aspect-ratio:3840/1240}
+.asset .thumb.checker{background:
+  repeating-conic-gradient(#1A1850 0 25%,#12113C 0 50%) 0 0/22px 22px}
+.asset .thumb img{max-width:100%;max-height:100%;object-fit:contain}
+.asset.wide .thumb img{width:100%;height:100%;object-fit:cover}
+.asset figcaption{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap;
+  margin-top:10px;padding:0 4px;font-family:var(--mono);font-size:11.5px;color:var(--dim)}
+.asset figcaption b{display:block;color:var(--text);font-family:var(--body);font-size:14px;font-weight:700;margin-bottom:2px}
+.asset figcaption a{color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(255,211,77,.35);white-space:nowrap}
+.asset figcaption a:hover{border-color:var(--gold)}
+
+@media (max-width:1100px){.stage-in{--s:.48}}
+@media (max-width:900px){.stage-in{--s:.36}}
+@media (max-width:640px){
+  .stage-in{--s:.205;gap:5px;padding-left:6px;padding-right:6px}
+  .hero.amg{padding-bottom:54px}
+  .assets{grid-template-columns:repeat(2,1fr);gap:12px}
+  .asset .thumb{height:120px}
+  .asset figcaption a{font-size:11px}
+}
+</style>
+</head>
+<body data-sky="doodles" data-motes="stars">
+
+<div id="veil"></div>
+<canvas id="sky"></canvas>
+<canvas id="motes"></canvas>
+<div id="grain"></div>
+<div id="bar"></div>
+
+<div class="rail l" id="railL"><div class="stone"></div><div class="vine"></div><div class="fill"></div></div>
+<div class="rail r" id="railR"><div class="stone"></div><div class="vine"></div><div class="fill"></div></div>
+
+<nav class="nav" aria-label="Main">
+  <a class="brand" href="../../">ZeKay <b>Studios</b></a>
+  <div class="nav-links">
+    <details class="menu">
+      <summary>Games</summary>
+      <div class="menu-list">
+        <a href="../../games/for-our-king/"><img src="../../assets/thumbs/fok.jpg" alt=""><span>For Our King<small>Out October 27</small></span></a>
+        <a href="../../games/apprentice-mage-gale/" aria-current="page"><img src="../../assets/thumbs/amg.jpg" alt=""><span>Apprentice Mage Gale<small>Coming to Steam</small></span></a>
+      </div>
+    </details>
+    <a href="#press">Press</a>
+    <a class="wide-only" href="mailto:zain@zekaystudios.com">Contact</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<header class="hero amg">
+  <div class="banner">
+    <div class="banner-art" id="art" style="background-image:url('../../assets/amg/library_hero.png')"></div>
+    <div class="banner-fade"></div>
+  </div>
+  <div class="hero-in">
+    <img class="logo" id="logo" src="../../assets/amg/logo.png" alt="Apprentice Mage Gale">
+    <div class="cta">
+      <!-- Steam page not public yet. Put this back when it is:
+      <a class="btn pulse" href="https://store.steampowered.com/app/5153730/">Wishlist on Steam</a> -->
+      <a class="btn pulse" href="#stills">See screenshots</a>
+      <a class="btn ghost" href="#assets">Press kit</a>
+    </div>
+    <p class="meta">Auto-battler <i>&times;</i> RPG <i>&middot;</i> <b>Release date TBD</b></p>
+  </div>
+</header>
+<div class="crenel"></div>
+
+<!-- PLAY AS THE MAGE: the party -->
+<section>
+  <div class="wrap">
+    <div class="rise center">
+      <p class="eyebrow">The party</p>
+      <h2>Play as the Mage</h2>
+    </div>
+    <div class="stage rise d1">
+      <div class="stage-in">
+        <div class="member" style="--w:269;--i:0"><span class="you alt">Priest</span><img src="../../assets/amg/party_1.png" alt="The Priest" loading="lazy"></div>
+        <div class="member" style="--w:231;--i:1"><span class="you alt">Slime</span><img src="../../assets/amg/party_2.png" alt="The Slime" loading="lazy"></div>
+        <div class="member" style="--w:461;--i:2"><span class="you">Gale</span><img src="../../assets/amg/party_3.png" alt="Gale" loading="lazy"></div>
+        <div class="member" style="--w:404;--i:3"><span class="you alt">Knight</span><img src="../../assets/amg/party_4.png" alt="The Knight" loading="lazy"></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CAST MANY SPELLS -->
+<section>
+  <div class="wrap">
+    <div class="feature">
+      <div class="copy rise">
+        <p class="eyebrow">Spells</p>
+        <h2>Cast Many Spells</h2>
+      </div>
+      <div class="media rise d1 tilt">
+        <span class="corner tl"></span><span class="corner tr"></span>
+        <span class="corner bl"></span><span class="corner br"></span>
+        <div class="inner swap" style="--delay:0s">
+          <img src="../../assets/amg/shots/shot_01.png" alt="Gale casts Fireball at a werewolf in The Meadow" loading="lazy">
+          <img src="../../assets/amg/shots/shot_04.png" alt="Spell loadout with Fireball selected" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- UPGRADE YOUR TEAM -->
+<section>
+  <div class="wrap">
+    <div class="feature flip">
+      <div class="copy rise">
+        <p class="eyebrow">Skill tree</p>
+        <h2>Upgrade Your Team</h2>
+      </div>
+      <div class="media rise d1 tilt">
+        <span class="corner tl"></span><span class="corner tr"></span>
+        <span class="corner bl"></span><span class="corner br"></span>
+        <div class="inner swap" style="--delay:-2.5s">
+          <img src="../../assets/amg/shots/shot_10.png" alt="A fresh skill tree with 9 points to spend" loading="lazy">
+          <img src="../../assets/amg/shots/shot_02.png" alt="The skill tree with points spent across all four paths" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CONQUER THE CAMPAIGN -->
+<section>
+  <div class="wrap">
+    <div class="feature">
+      <div class="copy rise">
+        <p class="eyebrow">Encounters</p>
+        <h2>Conquer the Campaign</h2>
+      </div>
+      <div class="media rise d1 tilt">
+        <span class="corner tl"></span><span class="corner tr"></span>
+        <span class="corner bl"></span><span class="corner br"></span>
+        <div class="inner swap" style="--delay:-5s">
+          <img src="../../assets/amg/shots/shot_03.png" alt="Encounter select: The Iron Line in Thornwood" loading="lazy">
+          <img src="../../assets/amg/shots/shot_08.png" alt="Encounter select: Howling Grass" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- THE LEDGER -->
+<section>
+  <div class="wrap">
+    <div class="feature flip">
+      <div class="copy rise">
+        <p class="eyebrow">The Ledger</p>
+        <h2>Every Rule, Spell and Foe, Linked</h2>
+      </div>
+      <div class="media rise d1 tilt">
+        <span class="corner tl"></span><span class="corner tr"></span>
+        <span class="corner bl"></span><span class="corner br"></span>
+        <div class="inner swap" style="--delay:-7.5s">
+          <img src="../../assets/amg/shots/shot_11.png" alt="The Ledger index" loading="lazy">
+          <img src="../../assets/amg/shots/shot_12.png" alt="The Ledger mechanics page" loading="lazy">
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<div class="crenel"></div>
+
+<!-- TRAILER: hidden until the new trailer is ready -->
+
+<!-- SCREENSHOTS -->
+<section id="stills">
+  <div class="wrap">
+    <div class="rise">
+      <p class="eyebrow">Screenshots</p>
+      <h2 style="margin-bottom:8px">Stills</h2>
+      <p class="dim">Click any shot to see it full size.</p>
+    </div>
+    <div class="gallery rise d1">
+      <a href="../../assets/amg/shots/shot_01.png" data-lightbox="amg"><img src="../../assets/amg/shots/shot_01.png" alt="Gale casts Fireball at a werewolf in The Meadow" loading="lazy"></a>
+      <a href="../../assets/amg/shots/shot_02.png" data-lightbox="amg"><img src="../../assets/amg/shots/shot_02.png" alt="The skill tree with points spent across all four paths" loading="lazy"></a>
+      <a href="../../assets/amg/shots/shot_03.png" data-lightbox="amg"><img src="../../assets/amg/shots/shot_03.png" alt="Encounter select: The Iron Line in Thornwood" loading="lazy"></a>
+      <a href="../../assets/amg/shots/shot_04.png" data-lightbox="amg"><img src="../../assets/amg/shots/shot_04.png" alt="Spell loadout with Fireball selected" loading="lazy"></a>
+      <a href="../../assets/amg/shots/shot_05.png" data-lightbox="amg"><img src="../../assets/amg/shots/shot_05.png" alt="The party fighting orcs and a werewolf in The Meadow" loading="lazy"></a>
+      <a href="../../assets/amg/shots/shot_06.png" data-lightbox="amg"><img src="../../assets/amg/shots/shot_06.png" alt="Victory screen after The Meadow Road" loading="lazy"></a>
+      <a href="../../assets/amg/shots/shot_07.png" data-lightbox="amg"><img src="../../assets/amg/shots/shot_07.png" alt="Main menu" loading="lazy"></a>
+      <a href="../../assets/amg/shots/shot_08.png" data-lightbox="amg"><img src="../../assets/amg/shots/shot_08.png" alt="Encounter select: Howling Grass" loading="lazy"></a>
+      <a href="../../assets/amg/shots/shot_09.png" data-lightbox="amg"><img src="../../assets/amg/shots/shot_09.png" alt="The party facing three orcs" loading="lazy"></a>
+      <a href="../../assets/amg/shots/shot_10.png" data-lightbox="amg"><img src="../../assets/amg/shots/shot_10.png" alt="A fresh skill tree with 9 points to spend" loading="lazy"></a>
+      <a href="../../assets/amg/shots/shot_11.png" data-lightbox="amg"><img src="../../assets/amg/shots/shot_11.png" alt="The Ledger index" loading="lazy"></a>
+      <a href="../../assets/amg/shots/shot_12.png" data-lightbox="amg"><img src="../../assets/amg/shots/shot_12.png" alt="The Ledger mechanics page" loading="lazy"></a>
+    </div>
+    <div class="btns" style="margin-top:28px">
+      <a class="btn sm ghost" href="../../assets/amg/amg_screenshots.zip" download>Download all 12 (PNG zip, 3.4 MB)</a>
+    </div>
+  </div>
+</section>
+
+<!-- ART AND PRESS ASSETS -->
+<section id="assets">
+  <div class="wrap">
+    <div class="rise">
+      <p class="eyebrow">Press assets</p>
+      <h2 style="margin-bottom:8px">Art and logos</h2>
+      <p class="dim">Full resolution. Free to use in coverage.</p>
+    </div>
+    <div class="assets">
+      <figure class="asset wide rise">
+        <div class="thumb"><img src="../../assets/amg/library_hero.png" alt="Library hero" loading="lazy"></div>
+        <figcaption><span><b>Hero art</b>3840 &times; 1240</span><a href="../../assets/amg/library_hero.png" download>Download PNG</a></figcaption>
+      </figure>
+      <figure class="asset rise">
+        <div class="thumb"><img src="../../assets/amg/capsule_main.png" alt="Key art" loading="lazy"></div>
+        <figcaption><span><b>Key art</b>1232 &times; 706</span><a href="../../assets/amg/capsule_main.png" download>Download</a></figcaption>
+      </figure>
+      <figure class="asset rise d1">
+        <div class="thumb checker"><img src="../../assets/amg/logo.png" alt="Logo" loading="lazy"></div>
+        <figcaption><span><b>Logo, transparent</b>1280 &times; 720</span><a href="../../assets/amg/logo.png" download>Download</a></figcaption>
+      </figure>
+      <figure class="asset rise d2">
+        <div class="thumb"><img src="../../assets/amg/header.png" alt="Header capsule" loading="lazy"></div>
+        <figcaption><span><b>Header</b>920 &times; 430</span><a href="../../assets/amg/header.png" download>Download</a></figcaption>
+      </figure>
+      <figure class="asset rise">
+        <div class="thumb"><img src="../../assets/amg/capsule_vertical.png" alt="Vertical capsule" loading="lazy"></div>
+        <figcaption><span><b>Vertical capsule</b>748 &times; 896</span><a href="../../assets/amg/capsule_vertical.png" download>Download</a></figcaption>
+      </figure>
+      <figure class="asset rise d1">
+        <div class="thumb"><img src="../../assets/amg/library_capsule.png" alt="Library capsule" loading="lazy"></div>
+        <figcaption><span><b>Library capsule</b>600 &times; 900</span><a href="../../assets/amg/library_capsule.png" download>Download</a></figcaption>
+      </figure>
+      <figure class="asset rise d2">
+        <div class="thumb"><img src="../../assets/amg/square.png" alt="Square art" loading="lazy"></div>
+        <figcaption><span><b>Square</b>512 &times; 512</span><a href="../../assets/amg/square.png" download>Download</a></figcaption>
+      </figure>
+      <figure class="asset rise">
+        <div class="thumb"><img src="../../assets/amg/capsule_small.png" alt="Small capsule" loading="lazy"></div>
+        <figcaption><span><b>Small capsule</b>462 &times; 174</span><a href="../../assets/amg/capsule_small.png" download>Download</a></figcaption>
+      </figure>
+      <figure class="asset rise d1">
+        <div class="thumb"><img src="../../assets/amg/icon.jpg" alt="Icon" loading="lazy"></div>
+        <figcaption><span><b>Icon</b>184 &times; 184</span><a href="../../assets/amg/icon.jpg" download>Download</a></figcaption>
+      </figure>
+    </div>
+  </div>
+</section>
+
+<div class="crenel"></div>
+
+<!-- PRESS -->
+<section id="press">
+  <div class="wrap rise">
+    <p class="eyebrow">Press and creators</p>
+    <h2>Request a review key</h2>
+    <ul class="facts" style="margin-top:26px">
+      <li><span class="k">Title</span><span>Apprentice Mage Gale</span></li>
+      <li><span class="k">Developer</span><span>ZeKay Studios</span></li>
+      <li><span class="k">Genre</span><span>Auto-battler RPG</span></li>
+      <li><span class="k">Platform</span><span>PC via Steam</span></li>
+      <li><span class="k">Release</span><span>TBA</span></li>
+      <li><span class="k">Contact</span><span><a href="mailto:zain@zekaystudios.com">zain@zekaystudios.com</a></span></li>
+    </ul>
+    <div class="btns">
+      <a class="btn" href="mailto:zain@zekaystudios.com?subject=Review%20key%20request%20-%20Apprentice%20Mage%20Gale">Request a key</a>
+      <!-- <a class="btn ghost" href="https://store.steampowered.com/app/5153730/">Steam page</a> -->
+    </div>
+  </div>
+</section>
+
+<div class="crenel"></div>
+<footer>
+  <p><a href="../../">ZeKay Studios</a> <i>&middot;</i> <a href="../../games/for-our-king/">For Our King</a> <i>&middot;</i> <a href="../../games/apprentice-mage-gale/">Apprentice Mage Gale</a></p>
+  <p>&copy; 2026 ZeKay Studios <i>&middot;</i> <a href="mailto:zain@zekaystudios.com">zain@zekaystudios.com</a></p>
+</footer>
+
+<script src="../../assets/site.js"></script>
+</body>
+</html>
