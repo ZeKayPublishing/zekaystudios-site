@@ -205,4 +205,20 @@ if (!reduce && fine){
   });
 })();
 
+
+/* ---------------- looping clips: <video class="loop" muted loop playsinline preload="none" poster>
+   play only while on screen, so a page full of clips stays light ---------------- */
+(function(){
+  var vids = [].slice.call(document.querySelectorAll('video.loop'));
+  if (!vids.length || reduce || !('IntersectionObserver' in window)) return;
+  var vio = new IntersectionObserver(function(es){
+    es.forEach(function(e){
+      var v = e.target;
+      if (e.isIntersecting){ var p = v.play(); if (p && p.catch) p.catch(function(){}); }
+      else v.pause();
+    });
+  }, {rootMargin:'200px 0px'});
+  vids.forEach(function(v){ v.muted = true; vio.observe(v); });
+})();
+
 })();

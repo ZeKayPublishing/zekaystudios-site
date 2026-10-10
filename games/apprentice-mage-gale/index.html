@@ -4,166 +4,172 @@
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
 <title>Apprentice Mage Gale | ZeKay Studios</title>
-<meta name="description" content="Apprentice Mage Gale, an auto-battler RPG from ZeKay Studios.">
+<meta name="description" content="Apprentice Mage Gale is an Autobattler RPG where your entire party depends on you. Master 20+ spells, build your mage through 300+ skill nodes, and fight across eight lands. Coming to Steam December 4, 2026.">
 <meta property="og:title" content="Apprentice Mage Gale">
-<meta property="og:description" content="An auto-battler RPG from ZeKay Studios.">
-<meta property="og:image" content="https://zekaystudios.com/assets/amg/capsule_main.png">
+<meta property="og:description" content="An Autobattler RPG where your entire party depends on you. Coming to Steam December 4, 2026.">
+<meta property="og:image" content="https://zekaystudios.com/assets/amg/art/AMG_Main_Capsule_1232x706.png">
 <meta property="og:url" content="https://zekaystudios.com/games/apprentice-mage-gale/">
 <meta property="og:type" content="website">
-<meta name="theme-color" content="#0A0B2E">
-<link rel="icon" href="../../assets/amg/icon.jpg">
+<meta name="theme-color" content="#120D22">
+<link rel="icon" href="../../assets/amg/art/AMG_Icon_184x184.png">
 <link rel="preconnect" href="https://fonts.googleapis.com">
 <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 <link href="https://fonts.googleapis.com/css2?family=Grenze+Gotisch:wght@700&family=Pixelify+Sans:wght@400;500;600;700&family=Nunito+Sans:opsz,wght@6..12,400;6..12,600;6..12,700;6..12,900&family=IBM+Plex+Mono:wght@400;500;600&display=swap" rel="stylesheet">
 <link rel="stylesheet" href="../../assets/site.css">
 <style>
 /* =====================================================================
-   Apprentice Mage Gale only. Everything here restyles the shared site
-   to match the game's art: night indigo, violet, sky blue, gold stars.
+   Apprentice Mage Gale only. Colors come straight from the game's logo:
+   plum outline #261A28, lavender #B68CFF, yellow #FFE445, cloud #F8F0FF.
    ===================================================================== */
 :root{
-  --abyss:#0A0B2E;
-  --gold:#FFD34D; --gold-2:#E5A823; --gold-3:#8C5A0E;
-  --violet:#9B7BFF; --violet-2:#6B45F0; --violet-3:#3E2399;
-  --azure:#2FB2FF; --sky:#01AEFD;
-  --text:#F2F3FF; --dim:#A3ABD9;
-  --line:rgba(155,123,255,.22);
+  --abyss:#120D22;
+  --plum:#261A28;
+  --gold:#FFE445; --gold-2:#E8C02A; --gold-3:#7A5B0C;
+  --violet:#B68CFF; --violet-2:#8F62F2; --violet-3:#261A28; --lav:#DEC4FF;
+  --azure:#4F7ACA; --meadow:#4E7724;
+  --text:#F8F0FF; --dim:#B4AACB;
+  --line:rgba(182,140,255,.22);
   --disp:"Pixelify Sans","Nunito Sans",system-ui,sans-serif;
 }
+.pixel{image-rendering:pixelated;image-rendering:crisp-edges}
 
-/* backdrop: violet and sky glows, drifting doodles down the sides */
-#veil::before{background:radial-gradient(circle,rgba(47,178,255,.20),transparent 68%)}
-#veil::after{background:radial-gradient(circle,rgba(155,123,255,.22),transparent 68%)}
-body[data-sky="doodles"] #sky{
-  background-image:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='420' viewBox='0 0 420 420'%3E%3Cg fill='none' stroke='white' stroke-opacity='0.13' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M40 70q25-10 50 0v44q-25-10-50 0z M90 70q25-10 50 0v44q-25-10-50 0z M48 84q17-6 34 0 M48 96q17-6 34 0 M98 84q17-6 34 0 M98 96q17-6 34 0 M290 40h16 M294 40v18 M302 40v18 M277 88q21 10 42 0 M196 300q45 16 90 0 M212 296l30-72 22 70 M220 280q22 7 44 0 M242 224q-14 2-20 10 M58 364l58-58 M350 316l12 14-12 14-12-14z M124 284Q124 298 138 298Q124 298 124 312Q124 298 110 298Q124 298 124 284Z'/%3E%3Ccircle cx='298' cy='80' r='22'/%3E%3Ccircle cx='350' cy='330' r='28'/%3E%3Ccircle cx='350' cy='330' r='20'/%3E%3C/g%3E%3Cpath fill='white' fill-opacity='0.16' d='M185 151Q185 160 194 160Q185 160 185 169Q185 160 176 160Q185 160 185 151Z M385 173Q385 180 392 180Q385 180 385 187Q385 180 378 180Q385 180 385 173Z M35 209Q35 215 41 215Q35 215 35 221Q35 215 29 215Q35 215 35 209Z M250 387Q250 395 258 395Q250 395 250 403Q250 395 242 395Q250 395 250 387Z M160 15Q160 20 165 20Q160 20 160 25Q160 20 155 20Q160 20 160 15Z'/%3E%3C/svg%3E");background-size:420px 420px;
-  animation:doodle 120s linear infinite}
-@keyframes doodle{to{background-position:420px -420px}}
+/* backdrop */
+#veil::before{background:radial-gradient(circle,rgba(79,122,202,.22),transparent 68%)}
+#veil::after{background:radial-gradient(circle,rgba(182,140,255,.18),transparent 68%)}
 #motes{opacity:.85}
-#bar{background:linear-gradient(90deg,var(--violet-2),var(--gold),#FFF6CC);box-shadow:0 0 14px rgba(255,211,77,.6)}
-
-/* side rails in violet with gold stars */
+#bar{background:linear-gradient(90deg,var(--violet-2),var(--gold),#FFF8CC);box-shadow:0 0 14px rgba(255,228,69,.55)}
 .rail .stone{background:
-    repeating-linear-gradient(0deg,rgba(155,123,255,.13) 0 2px,transparent 2px 46px),
-    linear-gradient(180deg,rgba(34,26,100,.5),rgba(14,12,50,.2));
-  border-color:rgba(155,123,255,.18)}
-.rail .vine{background:linear-gradient(180deg,transparent,rgba(155,123,255,.32) 8%,rgba(155,123,255,.32) 92%,transparent)}
-.rail .fill{background:linear-gradient(180deg,var(--violet-2),var(--gold));box-shadow:0 0 12px rgba(255,211,77,.5)}
-.node{border-color:rgba(155,123,255,.45)}
-.node::after{border-color:rgba(155,123,255,.25)}
-.node.lit{background:var(--gold);border-color:var(--gold);box-shadow:0 0 18px rgba(255,211,77,.75)}
+    repeating-linear-gradient(0deg,rgba(182,140,255,.12) 0 2px,transparent 2px 46px),
+    linear-gradient(180deg,rgba(38,26,40,.6),rgba(18,13,34,.2));
+  border-color:rgba(182,140,255,.18)}
+.rail .vine{background:linear-gradient(180deg,transparent,rgba(182,140,255,.3) 8%,rgba(182,140,255,.3) 92%,transparent)}
+.rail .fill{background:linear-gradient(180deg,var(--violet-2),var(--gold));box-shadow:0 0 12px rgba(255,228,69,.45)}
+.node{border-color:rgba(182,140,255,.45)}
+.node::after{border-color:rgba(182,140,255,.25)}
+.node.lit{background:var(--gold);border-color:var(--gold);box-shadow:0 0 18px rgba(255,228,69,.7)}
 
-/* type */
-h2{font-weight:600;font-size:clamp(32px,4.8vw,52px);letter-spacing:.01em;
-  text-shadow:0 4px 0 rgba(62,35,153,.75)}
+/* type: pixel headings with the logo's plum drop */
+h2{font-weight:600;font-size:clamp(32px,4.8vw,52px);letter-spacing:.01em;text-shadow:0 4px 0 var(--plum)}
+h3{font-family:var(--disp);font-weight:600}
 .eyebrow::before{width:11px;height:11px;background:var(--gold);
   clip-path:polygon(50% 0,62% 38%,100% 50%,62% 62%,50% 100%,38% 62%,0 50%,38% 38%)}
-.todo{color:var(--dim);font-style:italic;opacity:.8}
-
-/* buttons: violet like the GALE letters */
-.btn{font-weight:600;font-size:20px;color:#fff;border-color:var(--violet-3);
-  background:linear-gradient(180deg,#BBA3FF,#8C64FF 46%,#6A3FF2);
-  text-shadow:0 2px 0 rgba(40,16,110,.55);
-  box-shadow:0 5px 0 var(--violet-3),0 12px 30px rgba(6,6,30,.55)}
-.btn:hover{box-shadow:0 8px 0 var(--violet-3),0 18px 38px rgba(6,6,30,.6)}
-.btn:active{box-shadow:0 2px 0 var(--violet-3)}
-.btn.ghost{background:rgba(20,18,64,.66);color:#E9E2FF;border-color:rgba(155,123,255,.6);text-shadow:none;
-  box-shadow:0 5px 0 rgba(8,8,34,.6),0 10px 26px rgba(6,6,30,.4)}
-.btn.ghost:hover{background:rgba(36,30,100,.85)}
-.pulse{animation:up .9s .52s var(--ease) both,glowv 2.8s 1.6s ease-in-out infinite}
-@keyframes glowv{0%,100%{box-shadow:0 5px 0 var(--violet-3),0 12px 30px rgba(6,6,30,.55)}
-  50%{box-shadow:0 5px 0 var(--violet-3),0 12px 46px rgba(155,123,255,.55)}}
-
-/* frames */
-.media{background:linear-gradient(140deg,var(--violet),var(--azure) 35%,var(--violet-2) 68%,var(--gold))}
-.media .inner{background:#0B0A2A}
-.corner{border-color:var(--gold)}
-.crenel{height:22px;opacity:1;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='88' height='22' viewBox='0 0 88 22'%3E%3Cpath fill='%239B7BFF' fill-opacity='0.55' d='M22 2Q22 11 31 11Q22 11 22 20Q22 11 13 11Q22 11 22 2Z'/%3E%3Cpath fill='%23FFD34D' fill-opacity='0.6' d='M66 6Q66 11 71 11Q66 11 66 16Q66 11 61 11Q66 11 66 6Z'/%3E%3C/svg%3E") center/88px 22px repeat-x}
-
-/* ---------- hero: banner art with the logo overlapping its bottom edge ---------- */
-.hero.amg{display:block;place-items:normal;min-height:0;padding:0 0 84px;text-align:center}
-.banner{position:relative;height:clamp(300px,40vw,56svh);overflow:hidden;
-  -webkit-mask-image:linear-gradient(to bottom,#000 58%,transparent);mask-image:linear-gradient(to bottom,#000 58%,transparent)}
-.banner-art{position:absolute;inset:-5% -2%;background:center 55%/cover no-repeat;
-  transform:scale(1.08);will-change:transform}
-.banner-fade{position:absolute;inset:0;pointer-events:none;
-  background:linear-gradient(to bottom,rgba(10,11,46,.62) 0,transparent 24%)}
-.hero.amg .hero-in{margin:calc(-1 * clamp(80px,9vw,140px)) auto 0;padding:0 20px;max-width:900px}
-.hero.amg .logo{width:min(600px,90vw);margin:0 auto 10px;filter:drop-shadow(0 16px 30px rgba(6,6,30,.7))}
-.hero.amg .tag{font-weight:500;font-size:clamp(20px,2.8vw,28px);max-width:30ch;margin-bottom:30px;
-  text-shadow:0 3px 0 rgba(20,10,70,.9)}
-.tag.is-ph{opacity:.5}
-.hero.amg .meta{margin-top:30px;animation:up .9s .7s var(--ease) both}
-
-/* ---------- the party stage ---------- */
 .center{text-align:center}
 .center .eyebrow{justify-content:center}
 .center p{margin-left:auto;margin-right:auto}
-.stage{margin-top:44px;border-radius:14px;padding:3px;
-  background:linear-gradient(140deg,var(--violet),var(--azure) 40%,var(--violet-2) 70%,var(--gold));
-  box-shadow:0 30px 70px rgba(4,4,24,.6)}
-.stage-in{position:relative;border-radius:11px;overflow:hidden;
-  background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='420' height='420' viewBox='0 0 420 420'%3E%3Cg fill='none' stroke='white' stroke-opacity='0.35' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpath d='M40 70q25-10 50 0v44q-25-10-50 0z M90 70q25-10 50 0v44q-25-10-50 0z M48 84q17-6 34 0 M48 96q17-6 34 0 M98 84q17-6 34 0 M98 96q17-6 34 0 M290 40h16 M294 40v18 M302 40v18 M277 88q21 10 42 0 M196 300q45 16 90 0 M212 296l30-72 22 70 M220 280q22 7 44 0 M242 224q-14 2-20 10 M58 364l58-58 M350 316l12 14-12 14-12-14z M124 284Q124 298 138 298Q124 298 124 312Q124 298 110 298Q124 298 124 284Z'/%3E%3Ccircle cx='298' cy='80' r='22'/%3E%3Ccircle cx='350' cy='330' r='28'/%3E%3Ccircle cx='350' cy='330' r='20'/%3E%3C/g%3E%3Cpath fill='white' fill-opacity='0.55' d='M185 151Q185 160 194 160Q185 160 185 169Q185 160 176 160Q185 160 185 151Z M385 173Q385 180 392 180Q385 180 385 187Q385 180 378 180Q385 180 385 173Z M35 209Q35 215 41 215Q35 215 35 221Q35 215 29 215Q35 215 35 209Z M250 387Q250 395 258 395Q250 395 250 403Q250 395 242 395Q250 395 250 387Z M160 15Q160 20 165 20Q160 20 160 25Q160 20 155 20Q160 20 160 15Z'/%3E%3C/svg%3E") 0 0/300px 300px,radial-gradient(120% 90% at 50% 30%,#2BC0FF,var(--sky) 55%,#0A86D8);
-  height:clamp(250px,32vw,400px);display:flex;align-items:flex-end;justify-content:center;
-  gap:clamp(6px,3.2vw,50px);padding:0 16px clamp(22px,3.4vw,44px);
-  --s:.6}
-.stage-in::after{content:"";position:absolute;inset:0;pointer-events:none;
-  background:radial-gradient(ellipse at 50% 45%,transparent 55%,rgba(0,40,120,.35))}
-.member{position:relative;z-index:1;display:flex;flex-direction:column;align-items:center;
-  width:calc(var(--w) * 1px * var(--s));flex:0 0 auto;
-  animation:hop 3.6s ease-in-out infinite;animation-delay:calc(var(--i) * -0.9s);
-  transition:transform .3s var(--ease)}
-.member img{width:100%;height:auto;image-rendering:auto;filter:drop-shadow(0 3px 0 rgba(0,40,110,.28))}
-.member::after{content:"";width:74%;height:clamp(6px,1vw,12px);margin-top:-4px;border-radius:50%;
-  background:rgba(0,48,140,.35)}
-.member:hover{transform:translateY(-8px)}
-@keyframes hop{0%,100%{translate:0 0}50%{translate:0 -7px}}
-.you{position:absolute;top:calc(-1 * clamp(26px,3vw,38px));left:50%;transform:translateX(-50%);white-space:nowrap;
-  font-family:var(--disp);font-weight:600;font-size:clamp(12px,1.4vw,16px);line-height:1;
-  padding:6px 12px 6px 10px;border-radius:99px;color:#3A2305;
-  background:linear-gradient(180deg,#FFE58A,var(--gold));box-shadow:0 3px 0 var(--gold-3),0 8px 18px rgba(0,30,90,.35)}
-.you::before{content:"";display:inline-block;width:10px;height:10px;margin-right:6px;vertical-align:-1px;background:#6A3FF2;
-  clip-path:polygon(50% 0,62% 38%,100% 50%,62% 62%,50% 100%,38% 62%,0 50%,38% 38%)}
 
-.you.alt{color:#fff;font-weight:500;background:rgba(24,20,78,.82);box-shadow:0 3px 0 rgba(8,8,34,.5),0 8px 18px rgba(0,30,90,.3)}
-.you.alt::before{display:none}
+/* buttons: lavender with the plum outline, like the GALE letters */
+.btn{font-weight:600;font-size:20px;color:var(--plum);border:2px solid var(--plum);
+  background:linear-gradient(180deg,var(--lav),var(--violet) 52%,#9C74F5);
+  box-shadow:0 5px 0 var(--plum),0 12px 30px rgba(6,4,20,.5)}
+.btn:hover{box-shadow:0 8px 0 var(--plum),0 18px 38px rgba(6,4,20,.6)}
+.btn:active{box-shadow:0 2px 0 var(--plum)}
+.btn.ghost{background:rgba(38,26,40,.78);color:var(--lav);border-color:var(--violet);
+  box-shadow:0 5px 0 rgba(10,6,20,.7),0 10px 26px rgba(6,4,20,.4)}
+.btn.ghost:hover{background:rgba(58,38,70,.9)}
+.btn.gold{background:linear-gradient(180deg,#FFF3A0,var(--gold) 52%,#F2C931)}
+.pulse{animation:up .9s .52s var(--ease) both,glowv 2.8s 1.6s ease-in-out infinite}
+@keyframes glowv{0%,100%{box-shadow:0 5px 0 var(--plum),0 12px 30px rgba(6,4,20,.5)}
+  50%{box-shadow:0 5px 0 var(--plum),0 12px 46px rgba(255,228,69,.45)}}
 
-/* ---------- feature screenshots crossfade between two shots ---------- */
-.swap img{position:absolute;inset:0}
-.swap img+img{opacity:0;animation:swap 10s ease-in-out infinite;animation-delay:var(--delay,0s)}
-@keyframes swap{0%,42%{opacity:0}50%,92%{opacity:1}100%{opacity:0}}
+/* frames */
+.media{background:linear-gradient(140deg,var(--lav),var(--violet) 35%,var(--azure) 70%,var(--gold))}
+.media .inner{background:#0B0816}
+.corner{border-color:var(--gold)}
+.crenel{height:22px;opacity:1;background:url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='88' height='22' viewBox='0 0 88 22'%3E%3Cpath fill='%23B68CFF' fill-opacity='0.6' d='M22 2Q22 11 31 11Q22 11 22 20Q22 11 13 11Q22 11 22 2Z'/%3E%3Cpath fill='%23FFE445' fill-opacity='0.7' d='M66 6Q66 11 71 11Q66 11 66 16Q66 11 61 11Q66 11 66 6Z'/%3E%3C/svg%3E") center/88px 22px repeat-x}
+
+/* ---------- hero: the Library Hero with the logo over the sky ---------- */
+.hero.amg{display:flex;flex-direction:column;justify-content:space-between;align-items:center;
+  place-items:normal;padding:96px 20px 64px;gap:20px}
+.hero.amg .hero-art{background-color:#215416;background-size:max(100%,2400px) auto;background-position:55% 0}
+.hero.amg .hero-fade{background:
+  linear-gradient(to bottom,rgba(18,13,34,.55) 0,transparent 16%,transparent 66%,rgba(18,13,34,.55) 84%,var(--abyss) 100%)}
+.hero.amg .hero-in{max-width:none}
+.hero.amg .logo{width:min(620px,88vw);margin:0 auto 8px;filter:drop-shadow(0 10px 22px rgba(18,13,34,.55))}
+.nw{white-space:nowrap}
+.hero.amg .tag{font-family:var(--disp);font-weight:600;font-size:clamp(20px,2.6vw,28px);max-width:none;margin:0 auto 26px;
+  color:#fff;text-shadow:0 3px 0 var(--plum),0 0 24px rgba(18,13,34,.8)}
+.hero-low{position:relative;z-index:2;width:100%;text-align:center}
+.hero-low .meta{max-width:none;margin-left:auto;margin-right:auto}
+.hero.amg .meta{margin-top:24px}
+
+/* ---------- the party, standing on the Meadow ---------- */
+.stage{margin:44px auto 0;max-width:1000px;border-radius:12px;padding:3px;
+  background:linear-gradient(140deg,var(--lav),var(--violet) 40%,var(--azure) 70%,var(--gold));
+  box-shadow:0 30px 70px rgba(4,2,16,.6)}
+.stage-in{position:relative;border-radius:9px;overflow:hidden;height:clamp(300px,36vw,420px);
+  background:#2947B4 url("../../assets/amg/art/AMG_Page_Background_1438x810.png") center bottom/cover no-repeat;
+  display:flex;align-items:flex-end;justify-content:center;gap:clamp(18px,5vw,64px);
+  padding:0 16px 11%;--k:8}
+.mem{position:relative;display:flex;flex-direction:column;align-items:center;
+  animation:hop 3.4s ease-in-out infinite;animation-delay:calc(var(--i) * -0.85s)}
+.mem img{width:calc(var(--w) * var(--k) * 1px);height:auto;display:block}
+.mem::after{content:"";width:80%;height:8px;margin-top:-5px;border-radius:50%;background:rgba(20,40,10,.35)}
+@keyframes hop{0%,100%{translate:0 0}50%{translate:0 -6px}}
+.name{position:absolute;bottom:calc(100% + 10px);left:50%;transform:translateX(-50%);text-align:center;white-space:nowrap}
+.name b{display:inline-block;font-family:var(--disp);font-weight:600;font-size:clamp(13px,1.5vw,17px);line-height:1;
+  padding:6px 11px;border-radius:99px;color:var(--plum);background:#F8F0FF;border:2px solid var(--plum);box-shadow:0 3px 0 var(--plum)}
+.name i{display:block;margin-top:7px;font-style:normal;font-family:var(--mono);font-size:10.5px;letter-spacing:.16em;
+  text-transform:uppercase;color:#fff;text-shadow:0 1px 0 var(--plum),0 0 8px rgba(18,13,34,.9)}
+.mem.you .name b{background:var(--gold)}
+
+/* ---------- clips ---------- */
+.media video{background:#0B0816}
+.duo{display:grid;gap:3px;aspect-ratio:auto!important;background:var(--plum)!important}
+.duo figure{margin:0;position:relative}
+.duo video{aspect-ratio:1280/344;height:auto!important}
+.duo figcaption{position:absolute;left:10px;bottom:8px;font-family:var(--disp);font-weight:600;font-size:14px;
+  color:#fff;padding:3px 9px;border-radius:4px;background:rgba(38,26,40,.82)}
+
+/* ---------- eight lands ---------- */
+.lands{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:34px}
+.land{margin:0;border-radius:8px;overflow:hidden;border:2px solid var(--plum);background:var(--plum);
+  box-shadow:0 4px 0 var(--plum),0 14px 30px rgba(4,2,16,.45);transition:transform .3s var(--ease)}
+.land:hover{transform:translateY(-5px)}
+.land img{display:block;width:100%;aspect-ratio:2.6;object-fit:cover;object-position:50% 0}
+.land figcaption{padding:9px 12px 10px;font-family:var(--disp);font-weight:600;font-size:16px;color:#fff;
+  display:flex;justify-content:space-between;align-items:baseline}
+.land figcaption span{font-family:var(--mono);font-weight:500;font-size:10.5px;color:var(--gold);letter-spacing:.12em}
+
+/* ---------- closing ---------- */
+.closing{max-width:760px;margin:0 auto;text-align:center}
+.closing p{font-family:var(--disp);font-weight:500;font-size:clamp(22px,2.8vw,30px);line-height:1.4;max-width:none;
+  color:#fff;text-shadow:0 3px 0 var(--plum)}
+.closing p.small{font-size:clamp(17px,2vw,21px);color:var(--lav)}
+.closing .media{margin-top:34px}
+.closing .media .inner{aspect-ratio:1280/344}
 
 /* ---------- press assets ---------- */
 .assets{display:grid;grid-template-columns:repeat(auto-fill,minmax(230px,1fr));gap:18px;margin-top:30px}
 .asset{margin:0;border:1px solid var(--line);border-radius:8px;padding:10px 10px 12px;
-  background:linear-gradient(180deg,rgba(26,22,84,.6),rgba(12,11,44,.5));
-  transition:transform .3s var(--ease),border-color .3s}
-.asset:hover{transform:translateY(-4px);border-color:rgba(155,123,255,.55)}
+  background:linear-gradient(180deg,rgba(46,30,72,.6),rgba(20,14,40,.5));transition:transform .3s var(--ease),border-color .3s}
+.asset:hover{transform:translateY(-4px);border-color:rgba(182,140,255,.55)}
 .asset.wide{grid-column:1/-1}
-.asset .thumb{height:170px;border-radius:5px;display:grid;place-items:center;overflow:hidden;
-  background:#0B0A2A}
+.asset .thumb{height:170px;border-radius:5px;display:grid;place-items:center;overflow:hidden;background:#0B0816}
 .asset.wide .thumb{height:auto;aspect-ratio:3840/1240}
-.asset .thumb.checker{background:
-  repeating-conic-gradient(#1A1850 0 25%,#12113C 0 50%) 0 0/22px 22px}
+.asset .thumb.checker{background:repeating-conic-gradient(#2A2040 0 25%,#1D1630 0 50%) 0 0/22px 22px}
 .asset .thumb img{max-width:100%;max-height:100%;object-fit:contain}
 .asset.wide .thumb img{width:100%;height:100%;object-fit:cover}
 .asset figcaption{display:flex;justify-content:space-between;align-items:baseline;gap:10px;flex-wrap:wrap;
   margin-top:10px;padding:0 4px;font-family:var(--mono);font-size:11.5px;color:var(--dim)}
 .asset figcaption b{display:block;color:var(--text);font-family:var(--body);font-size:14px;font-weight:700;margin-bottom:2px}
-.asset figcaption a{color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(255,211,77,.35);white-space:nowrap}
-.asset figcaption a:hover{border-color:var(--gold)}
+.asset figcaption a{color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(255,228,69,.35);white-space:nowrap}
 
-@media (max-width:1100px){.stage-in{--s:.48}}
-@media (max-width:900px){.stage-in{--s:.36}}
+@media (max-width:1000px){.lands{grid-template-columns:repeat(2,1fr)}}
 @media (max-width:640px){
-  .stage-in{--s:.205;gap:5px;padding-left:6px;padding-right:6px}
-  .hero.amg{padding-bottom:54px}
+  .hero.amg{padding:84px 16px 46px}
+  .hero.amg .hero-art{background-size:auto 46%;background-position:54% 12%}
+  .stage-in{--k:4.5;gap:12px;padding-bottom:12%}
+  .name i{font-size:9px;letter-spacing:.1em}
+  .lands{gap:10px}
+  .land figcaption{font-size:14px;padding:7px 9px}
+  .land figcaption span{display:none}
   .assets{grid-template-columns:repeat(2,1fr);gap:12px}
   .asset .thumb{height:120px}
-  .asset figcaption a{font-size:11px}
 }
+@media (max-width:420px){.stage-in{--k:3.6}.hero.amg .tag{font-size:17px}}
 </style>
 </head>
-<body data-sky="doodles" data-motes="stars">
+<body data-motes="stars">
 
 <div id="veil"></div>
 <canvas id="sky"></canvas>
@@ -181,7 +187,7 @@ h2{font-weight:600;font-size:clamp(32px,4.8vw,52px);letter-spacing:.01em;
       <summary>Games</summary>
       <div class="menu-list">
         <a href="../../games/for-our-king/"><img src="../../assets/thumbs/fok.jpg" alt=""><span>For Our King<small>Out October 27</small></span></a>
-        <a href="../../games/apprentice-mage-gale/" aria-current="page"><img src="../../assets/thumbs/amg.jpg" alt=""><span>Apprentice Mage Gale<small>Coming to Steam</small></span></a>
+        <a href="../../games/apprentice-mage-gale/" aria-current="page"><img src="../../assets/thumbs/amg.jpg" alt=""><span>Apprentice Mage Gale<small>Coming December 4</small></span></a>
       </div>
     </details>
     <a href="#press">Press</a>
@@ -191,124 +197,168 @@ h2{font-weight:600;font-size:clamp(32px,4.8vw,52px);letter-spacing:.01em;
 
 <!-- HERO -->
 <header class="hero amg">
-  <div class="banner">
-    <div class="banner-art" id="art" style="background-image:url('../../assets/amg/library_hero.png')"></div>
-    <div class="banner-fade"></div>
-  </div>
+  <div class="hero-art" id="art" style="background-image:url('../../assets/amg/art/AMG_Library_Hero_3840x1240.png')"></div>
+  <div class="hero-fade"></div>
   <div class="hero-in">
-    <img class="logo" id="logo" src="../../assets/amg/logo.png" alt="Apprentice Mage Gale">
+    <img class="logo" id="logo" src="../../assets/amg/art/AMG_Library_Logo_1280x405.png" alt="Apprentice Mage Gale">
+  </div>
+  <div class="hero-low">
+    <p class="tag">Your entire party depends on you.</p>
     <div class="cta">
-      <!-- Steam page not public yet. Put this back when it is:
-      <a class="btn pulse" href="https://store.steampowered.com/app/5153730/">Wishlist on Steam</a> -->
-      <a class="btn pulse" href="#stills">See screenshots</a>
+      <a class="btn gold pulse" href="https://store.steampowered.com/app/5153730/">Wishlist on Steam</a>
       <a class="btn ghost" href="#assets">Press kit</a>
     </div>
-    <p class="meta">Auto-battler <i>&times;</i> RPG <i>&middot;</i> <b>Release date TBD</b></p>
+    <p class="meta">Autobattler <i>&times;</i> RPG <i>&middot;</i> <span class="nw">Out <b>December 4, 2026</b></span></p>
   </div>
 </header>
 <div class="crenel"></div>
 
-<!-- PLAY AS THE MAGE: the party -->
+<!-- THE PARTY -->
 <section>
   <div class="wrap">
     <div class="rise center">
       <p class="eyebrow">The party</p>
-      <h2>Play as the Mage</h2>
+      <h2>The Party's Only Source of Damage</h2>
+      <p class="lead">Play as Gale, the Apprentice Mage, traveling with a party of adventurers on a journey to defeat the Demon King. Unlike the heroes beside you, Gale is the party's ONLY source of damage.</p>
     </div>
     <div class="stage rise d1">
       <div class="stage-in">
-        <div class="member" style="--w:269;--i:0"><span class="you alt">Priest</span><img src="../../assets/amg/party_1.png" alt="The Priest" loading="lazy"></div>
-        <div class="member" style="--w:231;--i:1"><span class="you alt">Slime</span><img src="../../assets/amg/party_2.png" alt="The Slime" loading="lazy"></div>
-        <div class="member" style="--w:461;--i:2"><span class="you">Gale</span><img src="../../assets/amg/party_3.png" alt="Gale" loading="lazy"></div>
-        <div class="member" style="--w:404;--i:3"><span class="you alt">Knight</span><img src="../../assets/amg/party_4.png" alt="The Knight" loading="lazy"></div>
+        <div class="mem you" style="--i:0;--w:17"><span class="name"><b>Gale</b><i>The Mage</i></span><img class="pixel" src="../../assets/amg/sprites/gale.png" alt="Gale"></div>
+        <div class="mem" style="--i:1;--w:16"><span class="name"><b>Priest</b><i>The Healer</i></span><img class="pixel" src="../../assets/amg/sprites/priest.png" alt="Priest"></div>
+        <div class="mem" style="--i:2;--w:23"><span class="name"><b>Slime</b><i>The Hero</i></span><img class="pixel" src="../../assets/amg/sprites/slime_x2.png" alt="Slime"></div>
+        <div class="mem" style="--i:3;--w:19"><span class="name"><b>Knight</b><i>The Tank</i></span><img class="pixel" src="../../assets/amg/sprites/knight.png" alt="Knight"></div>
+      </div>
+    </div>
+    <div class="rise center" style="margin-top:34px">
+      <p>Your companions are few yet formidable: Slime the Hero, Priest the Healer, and Knight the Tank. While they can fight, defend, and support you, when it comes time to bring down the enemy, they are counting on you.</p>
+    </div>
+    <div class="stats rise d1">
+      <div class="stat"><span class="n" data-to="20" data-suffix="+">0</span><span class="l">Spells</span></div>
+      <div class="stat"><span class="n" data-to="300" data-suffix="+">0</span><span class="l">Skill nodes</span></div>
+      <div class="stat"><span class="n" data-to="20" data-suffix="+">0</span><span class="l">Dungeons</span></div>
+      <div class="stat"><span class="n" data-to="8">0</span><span class="l">Lands</span></div>
+    </div>
+  </div>
+</section>
+
+<!-- BUILD YOUR TEAM -->
+<section>
+  <div class="wrap">
+    <div class="feature">
+      <div class="copy rise">
+        <p class="eyebrow">Companions</p>
+        <h2>Build Your Team</h2>
+        <p>Each of your companions has their own class, roles, and subclasses. Upgrade their skills, enhance their talents, customize their role, and find your own strategy with them.</p>
+      </div>
+      <div class="media rise d1 tilt">
+        <span class="corner tl"></span><span class="corner tr"></span>
+        <span class="corner bl"></span><span class="corner br"></span>
+        <div class="inner"><video class="loop" muted loop playsinline preload="none" poster="../../assets/amg/clips/06_the_party.jpg" aria-label="The Knight shields, the Slime buffs and the Priest heals"><source src="../../assets/amg/clips/06_the_party.webm" type="video/webm"><source src="../../assets/amg/clips/06_the_party.mp4" type="video/mp4"></video></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- CAST MANY SPELLS -->
+<!-- BECOME A POWERFUL MAGE -->
 <section>
   <div class="wrap">
-    <div class="feature">
+    <div class="feature flip">
       <div class="copy rise">
         <p class="eyebrow">Spells</p>
-        <h2>Cast Many Spells</h2>
+        <h2>Become a Powerful Mage</h2>
+        <p>Master over 20 unique spells, each with its own strengths and uses. Set foes burning with Fireball, then Combust them. Freeze them solid with Deep Freeze, then Shatter the ice.</p>
+        <p>Choose carefully which spells to bring and discover combinations that can turn an ordinary apprentice into a formidable mage.</p>
       </div>
       <div class="media rise d1 tilt">
         <span class="corner tl"></span><span class="corner tr"></span>
         <span class="corner bl"></span><span class="corner br"></span>
-        <div class="inner swap" style="--delay:0s">
-          <img src="../../assets/amg/shots/shot_01.png" alt="Gale casts Fireball at a werewolf in The Meadow" loading="lazy">
-          <img src="../../assets/amg/shots/shot_04.png" alt="Spell loadout with Fireball selected" loading="lazy">
+        <div class="inner duo">
+          <figure><video class="loop" muted loop playsinline preload="none" poster="../../assets/amg/clips/01_fire_spells_banner.jpg" aria-label="Fireball, then Combust"><source src="../../assets/amg/clips/01_fire_spells_banner.webm" type="video/webm"><source src="../../assets/amg/clips/01_fire_spells_banner.mp4" type="video/mp4"></video><figcaption>Fireball, then Combust</figcaption></figure>
+          <figure><video class="loop" muted loop playsinline preload="none" poster="../../assets/amg/clips/02_frost_spells_banner.jpg" aria-label="Deep Freeze, then Shatter"><source src="../../assets/amg/clips/02_frost_spells_banner.webm" type="video/webm"><source src="../../assets/amg/clips/02_frost_spells_banner.mp4" type="video/mp4"></video><figcaption>Deep Freeze, then Shatter</figcaption></figure>
         </div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- UPGRADE YOUR TEAM -->
-<section>
-  <div class="wrap">
-    <div class="feature flip">
-      <div class="copy rise">
-        <p class="eyebrow">Skill tree</p>
-        <h2>Upgrade Your Team</h2>
-      </div>
-      <div class="media rise d1 tilt">
-        <span class="corner tl"></span><span class="corner tr"></span>
-        <span class="corner bl"></span><span class="corner br"></span>
-        <div class="inner swap" style="--delay:-2.5s">
-          <img src="../../assets/amg/shots/shot_10.png" alt="A fresh skill tree with 9 points to spend" loading="lazy">
-          <img src="../../assets/amg/shots/shot_02.png" alt="The skill tree with points spent across all four paths" loading="lazy">
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- CONQUER THE CAMPAIGN -->
+<!-- BUILD YOUR OWN PATH -->
 <section>
   <div class="wrap">
     <div class="feature">
       <div class="copy rise">
-        <p class="eyebrow">Encounters</p>
-        <h2>Conquer the Campaign</h2>
+        <p class="eyebrow">Skill tree</p>
+        <h2>Build Your Own Path</h2>
+        <p>Explore a massive skill tree with 300+ nodes. Strengthen Gale, enhance your party, choose subclasses, and shape your build around the spells and strategies you discover.</p>
       </div>
       <div class="media rise d1 tilt">
         <span class="corner tl"></span><span class="corner tr"></span>
         <span class="corner bl"></span><span class="corner br"></span>
-        <div class="inner swap" style="--delay:-5s">
-          <img src="../../assets/amg/shots/shot_03.png" alt="Encounter select: The Iron Line in Thornwood" loading="lazy">
-          <img src="../../assets/amg/shots/shot_08.png" alt="Encounter select: Howling Grass" loading="lazy">
-        </div>
+        <div class="inner"><video class="loop" muted loop playsinline preload="none" poster="../../assets/amg/clips/05_skill_tree_subclass.jpg" aria-label="A milestone bought and subclasses revealed on the skill tree"><source src="../../assets/amg/clips/05_skill_tree_subclass.webm" type="video/webm"><source src="../../assets/amg/clips/05_skill_tree_subclass.mp4" type="video/mp4"></video></div>
       </div>
     </div>
   </div>
 </section>
 
-<!-- THE LEDGER -->
+<!-- JOURNEY BEYOND THE FAMILIAR -->
 <section>
   <div class="wrap">
     <div class="feature flip">
       <div class="copy rise">
-        <p class="eyebrow">The Ledger</p>
-        <h2>Every Rule, Spell and Foe, Linked</h2>
+        <p class="eyebrow">Eight lands</p>
+        <h2>Journey Beyond the Familiar</h2>
+        <p>Fight your way through 20+ dungeons across eight lands: the Meadow, the Thornwood, the Bone Dunes, the Frozen Pass, the Deep, the Ashen Peaks, the Hollow City, and the Starfall.</p>
+        <p>Each land has its own monsters and its own boss, from the Orc Warlord to the Light Valkyrie, and the Ledger records every enemy you meet.</p>
       </div>
       <div class="media rise d1 tilt">
         <span class="corner tl"></span><span class="corner tr"></span>
         <span class="corner bl"></span><span class="corner br"></span>
-        <div class="inner swap" style="--delay:-7.5s">
-          <img src="../../assets/amg/shots/shot_11.png" alt="The Ledger index" loading="lazy">
-          <img src="../../assets/amg/shots/shot_12.png" alt="The Ledger mechanics page" loading="lazy">
-        </div>
+        <div class="inner"><video class="loop" muted loop playsinline preload="none" poster="../../assets/amg/clips/07_eight_lands.jpg" aria-label="All eight lands, one after another"><source src="../../assets/amg/clips/07_eight_lands.webm" type="video/webm"><source src="../../assets/amg/clips/07_eight_lands.mp4" type="video/mp4"></video></div>
       </div>
+    </div>
+    <div class="lands">
+      <figure class="land rise"><img class="pixel" src="../../assets/amg/shots/01_meadow_deep_freeze_stops_a_pounce.png" alt="The Meadow" loading="lazy"><figcaption>The Meadow<span>01</span></figcaption></figure>
+      <figure class="land rise d1"><img class="pixel" src="../../assets/amg/shots/02_thornwood_werewolf_leaps.png" alt="The Thornwood" loading="lazy"><figcaption>The Thornwood<span>02</span></figcaption></figure>
+      <figure class="land rise d2"><img class="pixel" src="../../assets/amg/shots/04_bone_dunes_venom_wyrm_erupts.png" alt="The Bone Dunes" loading="lazy"><figcaption>The Bone Dunes<span>03</span></figcaption></figure>
+      <figure class="land rise d3"><img class="pixel" src="../../assets/amg/shots/06_frozen_pass_fireball_on_an_impale.png" alt="The Frozen Pass" loading="lazy"><figcaption>The Frozen Pass<span>04</span></figcaption></figure>
+      <figure class="land rise"><img class="pixel" src="../../assets/amg/shots/10_the_deep_fallen_knight_dark_beam.png" alt="The Deep" loading="lazy"><figcaption>The Deep<span>05</span></figcaption></figure>
+      <figure class="land rise d1"><img class="pixel" src="../../assets/amg/shots/12_ashen_peaks_lava_fields.png" alt="The Ashen Peaks" loading="lazy"><figcaption>The Ashen Peaks<span>06</span></figcaption></figure>
+      <figure class="land rise d2"><img class="pixel" src="../../assets/amg/shots/13_hollow_city_three_heavy_attacks.png" alt="The Hollow City" loading="lazy"><figcaption>The Hollow City<span>07</span></figcaption></figure>
+      <figure class="land rise d3"><img class="pixel" src="../../assets/amg/shots/17_starfall_light_valkyrie_spearing.png" alt="The Starfall" loading="lazy"><figcaption>The Starfall<span>08</span></figcaption></figure>
+    </div>
+  </div>
+</section>
+
+<!-- CLOSING -->
+<section>
+  <div class="wrap closing rise">
+    <p>The journey may be long.</p>
+    <p class="small">But perhaps, someday, you'll look back and realize just how far this little apprentice has come.</p>
+    <div class="media">
+      <span class="corner tl"></span><span class="corner tr"></span>
+      <span class="corner bl"></span><span class="corner br"></span>
+      <div class="inner"><video class="loop" muted loop playsinline preload="none" poster="../../assets/amg/clips/10_light_valkyrie_falls_banner.jpg" aria-label="The Light Valkyrie falls"><source src="../../assets/amg/clips/10_light_valkyrie_falls_banner.webm" type="video/webm"><source src="../../assets/amg/clips/10_light_valkyrie_falls_banner.mp4" type="video/mp4"></video></div>
     </div>
   </div>
 </section>
 
 <div class="crenel"></div>
 
-<!-- TRAILER: hidden until the new trailer is ready -->
+<!-- TRAILER -->
+<section>
+  <div class="wrap">
+    <div class="rise center">
+      <p class="eyebrow">Trailer</p>
+      <h2 style="margin-bottom:28px">The Long Road</h2>
+    </div>
+    <div class="media rise d1" style="max-width:940px;margin:0 auto">
+      <span class="corner tl"></span><span class="corner tr"></span>
+      <span class="corner bl"></span><span class="corner br"></span>
+      <div class="inner">
+        <video controls playsinline preload="none" poster="../../assets/amg/art/AMG_Main_Capsule_1232x706.png" src="../../assets/amg/trailer.mp4"></video>
+      </div>
+    </div>
+  </div>
+</section>
 
 <!-- SCREENSHOTS -->
 <section id="stills">
@@ -316,24 +366,34 @@ h2{font-weight:600;font-size:clamp(32px,4.8vw,52px);letter-spacing:.01em;
     <div class="rise">
       <p class="eyebrow">Screenshots</p>
       <h2 style="margin-bottom:8px">Stills</h2>
-      <p class="dim">Click any shot to see it full size.</p>
+      <p class="dim">All eight lands and their bosses. Click any shot to see it full size.</p>
     </div>
-    <div class="gallery rise d1">
-      <a href="../../assets/amg/shots/shot_01.png" data-lightbox="amg"><img src="../../assets/amg/shots/shot_01.png" alt="Gale casts Fireball at a werewolf in The Meadow" loading="lazy"></a>
-      <a href="../../assets/amg/shots/shot_02.png" data-lightbox="amg"><img src="../../assets/amg/shots/shot_02.png" alt="The skill tree with points spent across all four paths" loading="lazy"></a>
-      <a href="../../assets/amg/shots/shot_03.png" data-lightbox="amg"><img src="../../assets/amg/shots/shot_03.png" alt="Encounter select: The Iron Line in Thornwood" loading="lazy"></a>
-      <a href="../../assets/amg/shots/shot_04.png" data-lightbox="amg"><img src="../../assets/amg/shots/shot_04.png" alt="Spell loadout with Fireball selected" loading="lazy"></a>
-      <a href="../../assets/amg/shots/shot_05.png" data-lightbox="amg"><img src="../../assets/amg/shots/shot_05.png" alt="The party fighting orcs and a werewolf in The Meadow" loading="lazy"></a>
-      <a href="../../assets/amg/shots/shot_06.png" data-lightbox="amg"><img src="../../assets/amg/shots/shot_06.png" alt="Victory screen after The Meadow Road" loading="lazy"></a>
-      <a href="../../assets/amg/shots/shot_07.png" data-lightbox="amg"><img src="../../assets/amg/shots/shot_07.png" alt="Main menu" loading="lazy"></a>
-      <a href="../../assets/amg/shots/shot_08.png" data-lightbox="amg"><img src="../../assets/amg/shots/shot_08.png" alt="Encounter select: Howling Grass" loading="lazy"></a>
-      <a href="../../assets/amg/shots/shot_09.png" data-lightbox="amg"><img src="../../assets/amg/shots/shot_09.png" alt="The party facing three orcs" loading="lazy"></a>
-      <a href="../../assets/amg/shots/shot_10.png" data-lightbox="amg"><img src="../../assets/amg/shots/shot_10.png" alt="A fresh skill tree with 9 points to spend" loading="lazy"></a>
-      <a href="../../assets/amg/shots/shot_11.png" data-lightbox="amg"><img src="../../assets/amg/shots/shot_11.png" alt="The Ledger index" loading="lazy"></a>
-      <a href="../../assets/amg/shots/shot_12.png" data-lightbox="amg"><img src="../../assets/amg/shots/shot_12.png" alt="The Ledger mechanics page" loading="lazy"></a>
+    <div class="gallery four rise d1">
+      <a class="big" href="../../assets/amg/shots/01_meadow_deep_freeze_stops_a_pounce.png" data-lightbox="amg"><img src="../../assets/amg/shots/01_meadow_deep_freeze_stops_a_pounce.png" alt="The Meadow: Deep Freeze stops a pounce" loading="lazy"></a>
+      <a href="../../assets/amg/shots/02_thornwood_werewolf_leaps.png" data-lightbox="amg"><img src="../../assets/amg/shots/02_thornwood_werewolf_leaps.png" alt="The Thornwood: a Werewolf leaps" loading="lazy"></a>
+      <a href="../../assets/amg/shots/03_thornwood_three_heavy_attacks.png" data-lightbox="amg"><img src="../../assets/amg/shots/03_thornwood_three_heavy_attacks.png" alt="The Thornwood: three heavy attacks at once" loading="lazy"></a>
+      <a href="../../assets/amg/shots/04_bone_dunes_venom_wyrm_erupts.png" data-lightbox="amg"><img src="../../assets/amg/shots/04_bone_dunes_venom_wyrm_erupts.png" alt="The Bone Dunes: the Venom Wyrm erupts" loading="lazy"></a>
+      <a href="../../assets/amg/shots/05_bone_dunes_venom_wyrm_exposed.png" data-lightbox="amg"><img src="../../assets/amg/shots/05_bone_dunes_venom_wyrm_exposed.png" alt="The Bone Dunes: the Venom Wyrm exposed" loading="lazy"></a>
+      <a href="../../assets/amg/shots/06_frozen_pass_fireball_on_an_impale.png" data-lightbox="amg"><img src="../../assets/amg/shots/06_frozen_pass_fireball_on_an_impale.png" alt="The Frozen Pass: Fireball on an impale" loading="lazy"></a>
+      <a href="../../assets/amg/shots/07_frozen_pass_combust.png" data-lightbox="amg"><img src="../../assets/amg/shots/07_frozen_pass_combust.png" alt="The Frozen Pass: Combust" loading="lazy"></a>
+      <a href="../../assets/amg/shots/08_frost_guardian_glacial_slam.png" data-lightbox="amg"><img src="../../assets/amg/shots/08_frost_guardian_glacial_slam.png" alt="The Frost Guardian's Glacial Slam" loading="lazy"></a>
+      <a href="../../assets/amg/shots/09_frost_guardian_deep_freeze.png" data-lightbox="amg"><img src="../../assets/amg/shots/09_frost_guardian_deep_freeze.png" alt="The Frost Guardian, frozen by Deep Freeze" loading="lazy"></a>
+      <a href="../../assets/amg/shots/10_the_deep_fallen_knight_dark_beam.png" data-lightbox="amg"><img src="../../assets/amg/shots/10_the_deep_fallen_knight_dark_beam.png" alt="The Deep: the Fallen Knight's Dark Beam" loading="lazy"></a>
+      <a href="../../assets/amg/shots/11_ashen_peaks_flame_golem_smash.png" data-lightbox="amg"><img src="../../assets/amg/shots/11_ashen_peaks_flame_golem_smash.png" alt="The Ashen Peaks: a Flame Golem smash" loading="lazy"></a>
+      <a href="../../assets/amg/shots/12_ashen_peaks_lava_fields.png" data-lightbox="amg"><img src="../../assets/amg/shots/12_ashen_peaks_lava_fields.png" alt="The Ashen Peaks: the lava fields" loading="lazy"></a>
+      <a href="../../assets/amg/shots/13_hollow_city_three_heavy_attacks.png" data-lightbox="amg"><img src="../../assets/amg/shots/13_hollow_city_three_heavy_attacks.png" alt="The Hollow City: three heavy attacks at once" loading="lazy"></a>
+      <a href="../../assets/amg/shots/14_hollow_city_hulkz_enraged.png" data-lightbox="amg"><img src="../../assets/amg/shots/14_hollow_city_hulkz_enraged.png" alt="The Hollow City: HulkZ enraged" loading="lazy"></a>
+      <a href="../../assets/amg/shots/15_starfall_deep_freeze.png" data-lightbox="amg"><img src="../../assets/amg/shots/15_starfall_deep_freeze.png" alt="The Starfall: Deep Freeze" loading="lazy"></a>
+      <a href="../../assets/amg/shots/16_starfall_shatter.png" data-lightbox="amg"><img src="../../assets/amg/shots/16_starfall_shatter.png" alt="The Starfall: Shatter" loading="lazy"></a>
+      <a class="big" href="../../assets/amg/shots/17_starfall_light_valkyrie_spearing.png" data-lightbox="amg"><img src="../../assets/amg/shots/17_starfall_light_valkyrie_spearing.png" alt="The Starfall: the Light Valkyrie spearing" loading="lazy"></a>
+      <a href="../../assets/amg/shots/18_starfall_light_valkyrie_slash.png" data-lightbox="amg"><img src="../../assets/amg/shots/18_starfall_light_valkyrie_slash.png" alt="The Starfall: the Light Valkyrie's slash" loading="lazy"></a>
+      <a href="../../assets/amg/shots/19_starfall_radiant_spear_wipe.png" data-lightbox="amg"><img src="../../assets/amg/shots/19_starfall_radiant_spear_wipe.png" alt="The Starfall: Radiant Spear" loading="lazy"></a>
+      <a href="../../assets/amg/shots/20_victory_results.png" data-lightbox="amg"><img src="../../assets/amg/shots/20_victory_results.png" alt="Victory results" loading="lazy"></a>
+      <a href="../../assets/amg/shots/21_skill_tree_subclasses_revealed.png" data-lightbox="amg"><img src="../../assets/amg/shots/21_skill_tree_subclasses_revealed.png" alt="The skill tree: subclasses revealed" loading="lazy"></a>
+      <a href="../../assets/amg/shots/22_map_slime_talks.png" data-lightbox="amg"><img src="../../assets/amg/shots/22_map_slime_talks.png" alt="The campaign map: the Slime talks" loading="lazy"></a>
     </div>
     <div class="btns" style="margin-top:28px">
-      <a class="btn sm ghost" href="../../assets/amg/amg_screenshots.zip" download>Download all 12 (PNG zip, 3.4 MB)</a>
+      <a class="btn ghost" href="../../assets/amg/amg_screenshots.zip" download>Download all 22 (PNG zip, 3.3 MB)</a>
     </div>
   </div>
 </section>
@@ -344,45 +404,48 @@ h2{font-weight:600;font-size:clamp(32px,4.8vw,52px);letter-spacing:.01em;
     <div class="rise">
       <p class="eyebrow">Press assets</p>
       <h2 style="margin-bottom:8px">Art and logos</h2>
-      <p class="dim">Full resolution. Free to use in coverage.</p>
+      <p class="dim">Steam's exact sizes, lossless. Free to use in coverage.</p>
     </div>
     <div class="assets">
       <figure class="asset wide rise">
-        <div class="thumb"><img src="../../assets/amg/library_hero.png" alt="Library hero" loading="lazy"></div>
-        <figcaption><span><b>Hero art</b>3840 &times; 1240</span><a href="../../assets/amg/library_hero.png" download>Download PNG</a></figcaption>
+        <div class="thumb"><img class="pixel" src="../../assets/amg/art/AMG_Library_Hero_3840x1240.png" alt="Hero art" loading="lazy"></div>
+        <figcaption><span><b>Hero art</b>3840 &times; 1240</span><a href="../../assets/amg/art/AMG_Library_Hero_3840x1240.png" download>Download</a></figcaption>
       </figure>
-      <figure class="asset rise">
-        <div class="thumb"><img src="../../assets/amg/capsule_main.png" alt="Key art" loading="lazy"></div>
-        <figcaption><span><b>Key art</b>1232 &times; 706</span><a href="../../assets/amg/capsule_main.png" download>Download</a></figcaption>
+      <figure class="asset  rise">
+        <div class="thumb"><img class="pixel" src="../../assets/amg/art/AMG_Main_Capsule_1232x706.png" alt="Main capsule" loading="lazy"></div>
+        <figcaption><span><b>Main capsule</b>1232 &times; 706</span><a href="../../assets/amg/art/AMG_Main_Capsule_1232x706.png" download>Download</a></figcaption>
       </figure>
-      <figure class="asset rise d1">
-        <div class="thumb checker"><img src="../../assets/amg/logo.png" alt="Logo" loading="lazy"></div>
-        <figcaption><span><b>Logo, transparent</b>1280 &times; 720</span><a href="../../assets/amg/logo.png" download>Download</a></figcaption>
+      <figure class="asset  rise">
+        <div class="thumb checker"><img class="pixel" src="../../assets/amg/art/AMG_Library_Logo_1280x405.png" alt="Logo, transparent" loading="lazy"></div>
+        <figcaption><span><b>Logo, transparent</b>1280 &times; 405</span><a href="../../assets/amg/art/AMG_Library_Logo_1280x405.png" download>Download</a></figcaption>
       </figure>
-      <figure class="asset rise d2">
-        <div class="thumb"><img src="../../assets/amg/header.png" alt="Header capsule" loading="lazy"></div>
-        <figcaption><span><b>Header</b>920 &times; 430</span><a href="../../assets/amg/header.png" download>Download</a></figcaption>
+      <figure class="asset  rise">
+        <div class="thumb"><img class="pixel" src="../../assets/amg/art/AMG_Header_Capsule_920x430.png" alt="Header capsule" loading="lazy"></div>
+        <figcaption><span><b>Header capsule</b>920 &times; 430</span><a href="../../assets/amg/art/AMG_Header_Capsule_920x430.png" download>Download</a></figcaption>
       </figure>
-      <figure class="asset rise">
-        <div class="thumb"><img src="../../assets/amg/capsule_vertical.png" alt="Vertical capsule" loading="lazy"></div>
-        <figcaption><span><b>Vertical capsule</b>748 &times; 896</span><a href="../../assets/amg/capsule_vertical.png" download>Download</a></figcaption>
+      <figure class="asset  rise">
+        <div class="thumb"><img class="pixel" src="../../assets/amg/art/AMG_Vertical_Capsule_748x896.png" alt="Vertical capsule" loading="lazy"></div>
+        <figcaption><span><b>Vertical capsule</b>748 &times; 896</span><a href="../../assets/amg/art/AMG_Vertical_Capsule_748x896.png" download>Download</a></figcaption>
       </figure>
-      <figure class="asset rise d1">
-        <div class="thumb"><img src="../../assets/amg/library_capsule.png" alt="Library capsule" loading="lazy"></div>
-        <figcaption><span><b>Library capsule</b>600 &times; 900</span><a href="../../assets/amg/library_capsule.png" download>Download</a></figcaption>
+      <figure class="asset  rise">
+        <div class="thumb"><img class="pixel" src="../../assets/amg/art/AMG_Library_Capsule_600x900.png" alt="Library capsule" loading="lazy"></div>
+        <figcaption><span><b>Library capsule</b>600 &times; 900</span><a href="../../assets/amg/art/AMG_Library_Capsule_600x900.png" download>Download</a></figcaption>
       </figure>
-      <figure class="asset rise d2">
-        <div class="thumb"><img src="../../assets/amg/square.png" alt="Square art" loading="lazy"></div>
-        <figcaption><span><b>Square</b>512 &times; 512</span><a href="../../assets/amg/square.png" download>Download</a></figcaption>
+      <figure class="asset  rise">
+        <div class="thumb"><img class="pixel" src="../../assets/amg/art/AMG_Page_Background_1438x810.png" alt="Page background" loading="lazy"></div>
+        <figcaption><span><b>Page background</b>1438 &times; 810</span><a href="../../assets/amg/art/AMG_Page_Background_1438x810.png" download>Download</a></figcaption>
       </figure>
-      <figure class="asset rise">
-        <div class="thumb"><img src="../../assets/amg/capsule_small.png" alt="Small capsule" loading="lazy"></div>
-        <figcaption><span><b>Small capsule</b>462 &times; 174</span><a href="../../assets/amg/capsule_small.png" download>Download</a></figcaption>
+      <figure class="asset  rise">
+        <div class="thumb"><img class="pixel" src="../../assets/amg/art/AMG_Small_Capsule_462x174.png" alt="Small capsule" loading="lazy"></div>
+        <figcaption><span><b>Small capsule</b>462 &times; 174</span><a href="../../assets/amg/art/AMG_Small_Capsule_462x174.png" download>Download</a></figcaption>
       </figure>
-      <figure class="asset rise d1">
-        <div class="thumb"><img src="../../assets/amg/icon.jpg" alt="Icon" loading="lazy"></div>
-        <figcaption><span><b>Icon</b>184 &times; 184</span><a href="../../assets/amg/icon.jpg" download>Download</a></figcaption>
+      <figure class="asset  rise">
+        <div class="thumb"><img class="pixel" src="../../assets/amg/art/AMG_Icon_512x512.png" alt="Icon" loading="lazy"></div>
+        <figcaption><span><b>Icon</b>512 &times; 512</span><a href="../../assets/amg/art/AMG_Icon_512x512.png" download>Download</a></figcaption>
       </figure>
+    </div>
+    <div class="btns" style="margin-top:28px">
+      <a class="btn ghost" href="../../assets/amg/amg_art.zip" download>Download all art (PNG zip)</a>
     </div>
   </div>
 </section>
@@ -397,14 +460,15 @@ h2{font-weight:600;font-size:clamp(32px,4.8vw,52px);letter-spacing:.01em;
     <ul class="facts" style="margin-top:26px">
       <li><span class="k">Title</span><span>Apprentice Mage Gale</span></li>
       <li><span class="k">Developer</span><span>ZeKay Studios</span></li>
-      <li><span class="k">Genre</span><span>Auto-battler RPG</span></li>
+      <li><span class="k">Genre</span><span>Autobattler RPG</span></li>
       <li><span class="k">Platform</span><span>PC via Steam</span></li>
-      <li><span class="k">Release</span><span>TBA</span></li>
+      <li><span class="k">Release</span><span>December 4, 2026</span></li>
+      <li><span class="k">Languages</span><span>English, German, Simplified Chinese</span></li>
       <li><span class="k">Contact</span><span><a href="mailto:zain@zekaystudios.com">zain@zekaystudios.com</a></span></li>
     </ul>
     <div class="btns">
       <a class="btn" href="mailto:zain@zekaystudios.com?subject=Review%20key%20request%20-%20Apprentice%20Mage%20Gale">Request a key</a>
-      <!-- <a class="btn ghost" href="https://store.steampowered.com/app/5153730/">Steam page</a> -->
+      <a class="btn ghost" href="https://store.steampowered.com/app/5153730/">Steam page</a>
     </div>
   </div>
 </section>
