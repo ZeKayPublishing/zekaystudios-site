@@ -112,23 +112,23 @@ h3{font-family:var(--disp);font-weight:600}
   text-transform:uppercase;color:#fff;text-shadow:0 1px 0 var(--plum),0 0 8px rgba(18,13,34,.9)}
 .mem.you .name b{background:var(--gold)}
 
-/* ---------- clips ---------- */
-.media video{background:#0B0816}
+/* ---------- GIFs ---------- */
 .duo{display:grid;gap:3px;aspect-ratio:auto!important;background:var(--plum)!important}
 .duo figure{margin:0;position:relative}
-.duo video{aspect-ratio:1280/344;height:auto!important}
+.duo img{aspect-ratio:640/172;height:auto!important}
 .duo figcaption{position:absolute;left:10px;bottom:8px;font-family:var(--disp);font-weight:600;font-size:14px;
   color:#fff;padding:3px 9px;border-radius:4px;background:rgba(38,26,40,.82)}
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:40px}
+.pair figure{margin:0}
+.pair figcaption{margin-top:10px;font-family:var(--mono);font-size:12px;letter-spacing:.04em;color:var(--dim)}
 
 /* ---------- eight lands ---------- */
-.lands{display:grid;grid-template-columns:repeat(4,1fr);gap:14px;margin-top:34px}
-.land{margin:0;border-radius:8px;overflow:hidden;border:2px solid var(--plum);background:var(--plum);
-  box-shadow:0 4px 0 var(--plum),0 14px 30px rgba(4,2,16,.45);transition:transform .3s var(--ease)}
-.land:hover{transform:translateY(-5px)}
-.land img{display:block;width:100%;aspect-ratio:2.6;object-fit:cover;object-position:50% 0}
-.land figcaption{padding:9px 12px 10px;font-family:var(--disp);font-weight:600;font-size:16px;color:#fff;
-  display:flex;justify-content:space-between;align-items:baseline}
-.land figcaption span{font-family:var(--mono);font-weight:500;font-size:10.5px;color:var(--gold);letter-spacing:.12em}
+.chips{display:flex;flex-wrap:wrap;gap:10px;justify-content:center;margin-top:30px}
+.chip{display:inline-flex;align-items:center;gap:8px;padding:7px 14px 7px 8px;border-radius:99px;
+  font-family:var(--disp);font-weight:600;font-size:15px;color:#fff;background:rgba(38,26,40,.85);
+  border:2px solid var(--plum);box-shadow:0 3px 0 var(--plum)}
+.chip i{font-style:normal;font-family:var(--mono);font-size:10.5px;color:var(--plum);background:var(--gold);
+  border-radius:99px;padding:2px 6px}
 
 /* ---------- closing ---------- */
 .closing{max-width:760px;margin:0 auto;text-align:center}
@@ -154,15 +154,13 @@ h3{font-family:var(--disp);font-weight:600}
 .asset figcaption b{display:block;color:var(--text);font-family:var(--body);font-size:14px;font-weight:700;margin-bottom:2px}
 .asset figcaption a{color:var(--gold);text-decoration:none;border-bottom:1px solid rgba(255,228,69,.35);white-space:nowrap}
 
-@media (max-width:1000px){.lands{grid-template-columns:repeat(2,1fr)}}
 @media (max-width:640px){
   .hero.amg{padding:84px 16px 46px}
   .hero.amg .hero-art{background-size:auto 46%;background-position:54% 12%}
   .stage-in{--k:4.5;gap:12px;padding-bottom:12%}
   .name i{font-size:9px;letter-spacing:.1em}
-  .lands{gap:10px}
-  .land figcaption{font-size:14px;padding:7px 9px}
-  .land figcaption span{display:none}
+  .pair{grid-template-columns:1fr}
+  .chip{font-size:13px}
   .assets{grid-template-columns:repeat(2,1fr);gap:12px}
   .asset .thumb{height:120px}
 }
@@ -253,7 +251,7 @@ h3{font-family:var(--disp);font-weight:600}
       <div class="media rise d1 tilt">
         <span class="corner tl"></span><span class="corner tr"></span>
         <span class="corner bl"></span><span class="corner br"></span>
-        <div class="inner"><video class="loop" muted loop playsinline preload="none" poster="../../assets/amg/clips/06_the_party.jpg" aria-label="The Knight shields, the Slime buffs and the Priest heals"><source src="../../assets/amg/clips/06_the_party.webm" type="video/webm"><source src="../../assets/amg/clips/06_the_party.mp4" type="video/mp4"></video></div>
+        <div class="inner"><img src="../../assets/amg/gifs/06_the_party.gif" alt="The Knight shields, the Slime buffs and the Priest heals" loading="lazy" decoding="async"></div>
       </div>
     </div>
   </div>
@@ -273,10 +271,32 @@ h3{font-family:var(--disp);font-weight:600}
         <span class="corner tl"></span><span class="corner tr"></span>
         <span class="corner bl"></span><span class="corner br"></span>
         <div class="inner duo">
-          <figure><video class="loop" muted loop playsinline preload="none" poster="../../assets/amg/clips/01_fire_spells_banner.jpg" aria-label="Fireball, then Combust"><source src="../../assets/amg/clips/01_fire_spells_banner.webm" type="video/webm"><source src="../../assets/amg/clips/01_fire_spells_banner.mp4" type="video/mp4"></video><figcaption>Fireball, then Combust</figcaption></figure>
-          <figure><video class="loop" muted loop playsinline preload="none" poster="../../assets/amg/clips/02_frost_spells_banner.jpg" aria-label="Deep Freeze, then Shatter"><source src="../../assets/amg/clips/02_frost_spells_banner.webm" type="video/webm"><source src="../../assets/amg/clips/02_frost_spells_banner.mp4" type="video/mp4"></video><figcaption>Deep Freeze, then Shatter</figcaption></figure>
+          <figure><img src="../../assets/amg/gifs/01_fire_spells_banner.gif" alt="Fireball, then Combust" loading="lazy" decoding="async"><figcaption>Fireball, then Combust</figcaption></figure>
+          <figure><img src="../../assets/amg/gifs/02_frost_spells_banner.gif" alt="Deep Freeze, then Shatter" loading="lazy" decoding="async"><figcaption>Deep Freeze, then Shatter</figcaption></figure>
         </div>
       </div>
+    </div>
+  </div>
+</section>
+
+<!-- STOP THEIR GREATEST BLOWS -->
+<section>
+  <div class="wrap">
+    <div class="rise center">
+      <p class="eyebrow">Bosses</p>
+      <h2>Stop Their Greatest Blows</h2>
+    </div>
+    <div class="pair">
+      <figure class="rise">
+        <div class="media tilt"><span class="corner tl"></span><span class="corner br"></span>
+          <div class="inner"><img src="../../assets/amg/gifs/03_freeze_the_blow.gif" alt="The Orc Warlord winds up Cleave and Deep Freeze stops it" loading="lazy" decoding="async"></div></div>
+        <figcaption>The Orc Warlord winds up Cleave. Deep Freeze stops it.</figcaption>
+      </figure>
+      <figure class="rise d1">
+        <div class="media tilt"><span class="corner tl"></span><span class="corner br"></span>
+          <div class="inner"><img src="../../assets/amg/gifs/04_shatter_the_guardian.gif" alt="The Frost Guardian frozen mid-blow, then shattered" loading="lazy" decoding="async"></div></div>
+        <figcaption>The Frost Guardian, frozen mid-blow, then shattered.</figcaption>
+      </figure>
     </div>
   </div>
 </section>
@@ -293,7 +313,7 @@ h3{font-family:var(--disp);font-weight:600}
       <div class="media rise d1 tilt">
         <span class="corner tl"></span><span class="corner tr"></span>
         <span class="corner bl"></span><span class="corner br"></span>
-        <div class="inner"><video class="loop" muted loop playsinline preload="none" poster="../../assets/amg/clips/05_skill_tree_subclass.jpg" aria-label="A milestone bought and subclasses revealed on the skill tree"><source src="../../assets/amg/clips/05_skill_tree_subclass.webm" type="video/webm"><source src="../../assets/amg/clips/05_skill_tree_subclass.mp4" type="video/mp4"></video></div>
+        <div class="inner"><img src="../../assets/amg/gifs/05_skill_tree_subclass.gif" alt="A milestone bought and subclasses revealed on the skill tree" loading="lazy" decoding="async"></div>
       </div>
     </div>
   </div>
@@ -312,18 +332,30 @@ h3{font-family:var(--disp);font-weight:600}
       <div class="media rise d1 tilt">
         <span class="corner tl"></span><span class="corner tr"></span>
         <span class="corner bl"></span><span class="corner br"></span>
-        <div class="inner"><video class="loop" muted loop playsinline preload="none" poster="../../assets/amg/clips/07_eight_lands.jpg" aria-label="All eight lands, one after another"><source src="../../assets/amg/clips/07_eight_lands.webm" type="video/webm"><source src="../../assets/amg/clips/07_eight_lands.mp4" type="video/mp4"></video></div>
+        <div class="inner"><img src="../../assets/amg/gifs/07_eight_lands.gif" alt="All eight lands, one after another" loading="lazy" decoding="async"></div>
       </div>
     </div>
-    <div class="lands">
-      <figure class="land rise"><img class="pixel" src="../../assets/amg/shots/01_meadow_deep_freeze_stops_a_pounce.png" alt="The Meadow" loading="lazy"><figcaption>The Meadow<span>01</span></figcaption></figure>
-      <figure class="land rise d1"><img class="pixel" src="../../assets/amg/shots/02_thornwood_werewolf_leaps.png" alt="The Thornwood" loading="lazy"><figcaption>The Thornwood<span>02</span></figcaption></figure>
-      <figure class="land rise d2"><img class="pixel" src="../../assets/amg/shots/04_bone_dunes_venom_wyrm_erupts.png" alt="The Bone Dunes" loading="lazy"><figcaption>The Bone Dunes<span>03</span></figcaption></figure>
-      <figure class="land rise d3"><img class="pixel" src="../../assets/amg/shots/06_frozen_pass_fireball_on_an_impale.png" alt="The Frozen Pass" loading="lazy"><figcaption>The Frozen Pass<span>04</span></figcaption></figure>
-      <figure class="land rise"><img class="pixel" src="../../assets/amg/shots/10_the_deep_fallen_knight_dark_beam.png" alt="The Deep" loading="lazy"><figcaption>The Deep<span>05</span></figcaption></figure>
-      <figure class="land rise d1"><img class="pixel" src="../../assets/amg/shots/12_ashen_peaks_lava_fields.png" alt="The Ashen Peaks" loading="lazy"><figcaption>The Ashen Peaks<span>06</span></figcaption></figure>
-      <figure class="land rise d2"><img class="pixel" src="../../assets/amg/shots/13_hollow_city_three_heavy_attacks.png" alt="The Hollow City" loading="lazy"><figcaption>The Hollow City<span>07</span></figcaption></figure>
-      <figure class="land rise d3"><img class="pixel" src="../../assets/amg/shots/17_starfall_light_valkyrie_spearing.png" alt="The Starfall" loading="lazy"><figcaption>The Starfall<span>08</span></figcaption></figure>
+    <div class="pair">
+      <figure class="rise">
+        <div class="media tilt"><span class="corner tl"></span><span class="corner br"></span>
+          <div class="inner"><img src="../../assets/amg/gifs/09_campaign_map.gif" alt="The whole campaign map, then a glide to the Venom Wyrm's encounter" loading="lazy" decoding="async"></div></div>
+        <figcaption>The campaign map</figcaption>
+      </figure>
+      <figure class="rise d1">
+        <div class="media tilt"><span class="corner tl"></span><span class="corner br"></span>
+          <div class="inner"><img src="../../assets/amg/gifs/08_a_land_appears.gif" alt="The Bone Dunes forming on the campaign map" loading="lazy" decoding="async"></div></div>
+        <figcaption>A new land appears</figcaption>
+      </figure>
+    </div>
+    <div class="chips rise">
+      <span class="chip"><i>01</i>The Meadow</span>
+      <span class="chip"><i>02</i>The Thornwood</span>
+      <span class="chip"><i>03</i>The Bone Dunes</span>
+      <span class="chip"><i>04</i>The Frozen Pass</span>
+      <span class="chip"><i>05</i>The Deep</span>
+      <span class="chip"><i>06</i>The Ashen Peaks</span>
+      <span class="chip"><i>07</i>The Hollow City</span>
+      <span class="chip"><i>08</i>The Starfall</span>
     </div>
   </div>
 </section>
@@ -336,7 +368,7 @@ h3{font-family:var(--disp);font-weight:600}
     <div class="media">
       <span class="corner tl"></span><span class="corner tr"></span>
       <span class="corner bl"></span><span class="corner br"></span>
-      <div class="inner"><video class="loop" muted loop playsinline preload="none" poster="../../assets/amg/clips/10_light_valkyrie_falls_banner.jpg" aria-label="The Light Valkyrie falls"><source src="../../assets/amg/clips/10_light_valkyrie_falls_banner.webm" type="video/webm"><source src="../../assets/amg/clips/10_light_valkyrie_falls_banner.mp4" type="video/mp4"></video></div>
+      <div class="inner"><img src="../../assets/amg/gifs/10_light_valkyrie_falls_banner.gif" alt="The Light Valkyrie falls" loading="lazy" decoding="async"></div>
     </div>
   </div>
 </section>

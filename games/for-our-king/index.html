@@ -109,8 +109,11 @@
 }
 
 
-/* wide loop, battlefield reel */
-.wide-loop{margin-top:40px}
+/* GIF pair under the stats, battlefield reel */
+.pair{display:grid;grid-template-columns:1fr 1fr;gap:24px;margin-top:40px}
+.pair figure{margin:0}
+.pair figcaption{margin-top:10px;font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--dim)}
+@media (max-width:640px){.pair{grid-template-columns:1fr}}
 .reel{display:grid;grid-template-columns:repeat(3,1fr);gap:20px;margin-top:34px}
 .reel-item{margin:0}
 .reel-item figcaption{margin-top:10px;font-family:var(--mono);font-size:12px;letter-spacing:.06em;color:var(--dim)}
@@ -173,10 +176,17 @@
       <div class="stat"><span class="n" data-to="8">0</span><span class="l">Spell slots</span></div>
       <div class="stat"><span class="n" data-to="6">0</span><span class="l">Sealed prestige paths</span></div>
     </div>
-    <div class="media wide-loop rise d1">
-      <span class="corner tl"></span><span class="corner tr"></span>
-      <span class="corner bl"></span><span class="corner br"></span>
-      <div class="inner"><video class="loop" muted loop playsinline preload="none" poster="../../assets/fok/clips/01_recruit_an_endless_army.jpg" aria-label="Recruiting an endless army"><source src="../../assets/fok/clips/01_recruit_an_endless_army.mp4" type="video/mp4"></video></div>
+    <div class="pair">
+      <figure class="rise d1">
+        <div class="media tilt"><span class="corner tl"></span><span class="corner br"></span>
+          <div class="inner"><img src="../../assets/fok/gifs/01_recruit_an_endless_army.gif" alt="Recruiting an endless army" loading="lazy" decoding="async"></div></div>
+        <figcaption>Recruit an endless army</figcaption>
+      </figure>
+      <figure class="rise d2">
+        <div class="media tilt"><span class="corner tl"></span><span class="corner br"></span>
+          <div class="inner"><img src="../../assets/fok/gifs/03_army_clash_forest.gif" alt="Two armies clash in the forest" loading="lazy" decoding="async"></div></div>
+        <figcaption>Army clash in the forest</figcaption>
+      </figure>
     </div>
   </div>
 </section>
@@ -193,7 +203,7 @@
         <span class="corner tl"></span><span class="corner tr"></span>
         <span class="corner bl"></span><span class="corner br"></span>
         <div class="inner">
-          <video class="loop" muted loop playsinline preload="none" poster="../../assets/fok/clips/05_royal_decrees_tree.jpg" aria-label="The Royal Decrees tree"><source src="../../assets/fok/clips/05_royal_decrees_tree.mp4" type="video/mp4"></video>
+          <img src="../../assets/fok/gifs/05_royal_decrees_tree.gif" alt="The Royal Decrees tree" loading="lazy" decoding="async">
         </div>
       </div>
     </div>
@@ -212,7 +222,7 @@
         <span class="corner tl"></span><span class="corner tr"></span>
         <span class="corner bl"></span><span class="corner br"></span>
         <div class="inner">
-          <video class="loop" muted loop playsinline preload="none" poster="../../assets/fok/clips/06_the_court_6557_percent.jpg" aria-label="The Court stacking one decree to +6557%"><source src="../../assets/fok/clips/06_the_court_6557_percent.mp4" type="video/mp4"></video>
+          <img src="../../assets/fok/gifs/06_the_court_6557_percent.gif" alt="The Court stacking one decree to +6557%" loading="lazy" decoding="async">
         </div>
       </div>
     </div>
@@ -265,7 +275,7 @@
         <span class="corner tl"></span><span class="corner tr"></span>
         <span class="corner bl"></span><span class="corner br"></span>
         <div class="inner">
-          <video class="loop" muted loop playsinline preload="none" poster="../../assets/fok/clips/07_prestige_two_paths.jpg" aria-label="Prestige: two paths, take one"><source src="../../assets/fok/clips/07_prestige_two_paths.mp4" type="video/mp4"></video>
+          <img src="../../assets/fok/gifs/07_prestige_two_paths.gif" alt="Prestige: two paths, take one" loading="lazy" decoding="async">
         </div>
       </div>
     </div>
@@ -280,27 +290,27 @@
     </div>
     <div class="reel">
       <figure class="reel-item rise">
-        <div class="media"><div class="inner"><video class="loop" muted loop playsinline preload="none" poster="../../assets/fok/clips/reel/02_army_vs_horde_snow.jpg" aria-label="Army vs the horde"><source src="../../assets/fok/clips/reel/02_army_vs_horde_snow.mp4" type="video/mp4"></video></div></div>
+        <div class="media"><div class="inner"><img src="../../assets/fok/gifs/02_army_vs_horde_snow.gif" alt="Army vs the horde" loading="lazy" decoding="async"></div></div>
         <figcaption>Army vs the horde</figcaption>
       </figure>
       <figure class="reel-item rise d1">
-        <div class="media"><div class="inner"><video class="loop" muted loop playsinline preload="none" poster="../../assets/fok/clips/reel/04_cave_siege.jpg" aria-label="Cave siege"><source src="../../assets/fok/clips/reel/04_cave_siege.mp4" type="video/mp4"></video></div></div>
+        <div class="media"><div class="inner"><img src="../../assets/fok/gifs/04_cave_siege.gif" alt="Cave siege" loading="lazy" decoding="async"></div></div>
         <figcaption>Cave siege</figcaption>
       </figure>
       <figure class="reel-item rise d2">
-        <div class="media"><div class="inner"><video class="loop" muted loop playsinline preload="none" poster="../../assets/fok/clips/reel/12_boss_battle.jpg" aria-label="Boss battle"><source src="../../assets/fok/clips/reel/12_boss_battle.mp4" type="video/mp4"></video></div></div>
+        <div class="media"><div class="inner"><img src="../../assets/fok/gifs/12_boss_battle.gif" alt="Boss battle" loading="lazy" decoding="async"></div></div>
         <figcaption>Boss battle</figcaption>
       </figure>
       <figure class="reel-item rise">
-        <div class="media"><div class="inner"><video class="loop" muted loop playsinline preload="none" poster="../../assets/fok/clips/reel/13_endless_horde.jpg" aria-label="Endless horde"><source src="../../assets/fok/clips/reel/13_endless_horde.mp4" type="video/mp4"></video></div></div>
+        <div class="media"><div class="inner"><img src="../../assets/fok/gifs/13_endless_horde.gif" alt="Endless horde" loading="lazy" decoding="async"></div></div>
         <figcaption>Endless horde</figcaption>
       </figure>
       <figure class="reel-item rise d1">
-        <div class="media"><div class="inner"><video class="loop" muted loop playsinline preload="none" poster="../../assets/fok/clips/reel/10_convergence_ultimate.jpg" aria-label="Convergence, the Twin Current ultimate"><source src="../../assets/fok/clips/reel/10_convergence_ultimate.mp4" type="video/mp4"></video></div></div>
+        <div class="media"><div class="inner"><img src="../../assets/fok/gifs/10_convergence_ultimate.gif" alt="Convergence, the Twin Current ultimate" loading="lazy" decoding="async"></div></div>
         <figcaption>Convergence, the Twin Current ultimate</figcaption>
       </figure>
       <figure class="reel-item rise d2">
-        <div class="media"><div class="inner"><video class="loop" muted loop playsinline preload="none" poster="../../assets/fok/clips/reel/11_liberation_ultimate.jpg" aria-label="Liberation, the Iron Doctrine ultimate"><source src="../../assets/fok/clips/reel/11_liberation_ultimate.mp4" type="video/mp4"></video></div></div>
+        <div class="media"><div class="inner"><img src="../../assets/fok/gifs/11_liberation_ultimate.gif" alt="Liberation, the Iron Doctrine ultimate" loading="lazy" decoding="async"></div></div>
         <figcaption>Liberation, the Iron Doctrine ultimate</figcaption>
       </figure>
     </div>
